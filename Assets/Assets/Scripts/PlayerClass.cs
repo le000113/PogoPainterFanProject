@@ -30,19 +30,10 @@ public class PlayerClass : MonoBehaviour
 
     private void Movement()
     {
-        //if(InputManager.sInstance.MoveHorizontal.x != 0)
-        //  {
-        //      player.transform.Rotate(InputManager.sInstance.MoveHorizontal, m_Angle);
-        //  }
-        //if(InputManager.sInstance.MoveVertical.z != 0)
-        //  {
-        //      //TODO play around with this.
-        //  }
-        if(!m_isRunning)
+        if (!m_isRunning)
         {
             StartCoroutine(smoothMove_Cr());
         }
-        
     }
 
     private IEnumerator smoothMove_Cr()
@@ -67,7 +58,7 @@ public class PlayerClass : MonoBehaviour
 
         transform.position = endPosition;
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.01f);
 
         m_isRunning = false;
     }
