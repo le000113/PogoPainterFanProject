@@ -24,5 +24,7 @@ public class Player1 : PlayerClass
     protected override void Update()
     {
         base.Update();
+
+        RotatePlayer(this.gameObject);
     }
 }

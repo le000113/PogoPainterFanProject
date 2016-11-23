@@ -3,7 +3,6 @@ using System.Collections;
 
 public class InputManager : MonoBehaviour
 {
-
     public static InputManager sInstance;
 
     // Use this for initialization
@@ -25,7 +24,7 @@ public class InputManager : MonoBehaviour
     {
         get
         {
-            return new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+            return new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         }
     }
 

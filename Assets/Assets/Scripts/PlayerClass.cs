@@ -5,10 +5,6 @@ using System.Collections.Generic;
 
 public class PlayerClass : MonoBehaviour
 {
-    Vector3 startPosition;
-    Vector3 endPosition;
-
-    protected Color color;
     float m_TileSize;
     private bool m_isRunning;
     protected float m_Speed;
@@ -16,6 +12,10 @@ public class PlayerClass : MonoBehaviour
 
     public float m_Score { get; protected set; }
 
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+
+    protected Color color;
     protected Vector3 Direction;
 
     protected virtual void Start()
@@ -33,6 +33,14 @@ public class PlayerClass : MonoBehaviour
         if (!m_isRunning)
         {
             StartCoroutine(smoothMove_Cr());
+        }
+    }
+
+    protected void RotatePlayer(GameObject player)
+    {
+        if(this != null)
+        {
+            player.transform.Rotate(InputManager.sInstance.MoveHorizontal, m_Angle);
         }
     }
 
