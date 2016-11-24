@@ -67,5 +67,4 @@ public class PlayerClass : MonoBehaviour
 
         m_isRunning = false;
     }
-
 }
