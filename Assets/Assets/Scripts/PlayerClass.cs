@@ -36,12 +36,9 @@ public class PlayerClass : MonoBehaviour
         }
     }
 
-    protected void RotatePlayer(GameObject player)
+    protected void RotatePlayer()
     {
-        if(this != null)
-        {
-            player.transform.Rotate(InputManager.sInstance.MoveHorizontal, m_Angle);
-        }
+        transform.LookAt(transform.position + InputManager.sInstance.MoveHorizontal, Vector3.up);
     }
 
     private IEnumerator smoothMove_Cr()

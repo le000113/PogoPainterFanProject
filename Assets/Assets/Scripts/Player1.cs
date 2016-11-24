@@ -18,13 +18,13 @@ public class Player1 : PlayerClass
         base.Start();
         color = Color.red;
         m_Speed = 1;
-        Direction = new Vector3(1f, 0, 0);
+        //Direction = new Vector3(1, 0, 0);
     }
 
     protected override void Update()
     {
         base.Update();
 
-        RotatePlayer(this.gameObject);
+        RotatePlayer();
     }
 }
