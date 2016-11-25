@@ -38,7 +38,14 @@ public class PlayerClass : MonoBehaviour
 
     protected void RotatePlayer()
     {
-        transform.LookAt(transform.position + InputManager.sInstance.MoveHorizontal, Vector3.up);
+        if (InputManager.sInstance.MoveHorizontal.magnitude > 0.707f)
+        {
+            transform.LookAt(transform.position + InputManager.sInstance.MoveHorizontal, Vector3.up);
+        }
+        else if (InputManager.sInstance.MoveVertical.magnitude > 0.707f)
+        {
+            transform.LookAt(transform.position + InputManager.sInstance.MoveVertical, Vector3.up);
+        }
     }
 
     private IEnumerator smoothMove_Cr()
