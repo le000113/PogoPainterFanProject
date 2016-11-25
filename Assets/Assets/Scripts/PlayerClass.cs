@@ -41,10 +41,12 @@ public class PlayerClass : MonoBehaviour
         if (InputManager.sInstance.MoveHorizontal.magnitude > 0.707f)
         {
             transform.LookAt(transform.position + InputManager.sInstance.MoveHorizontal, Vector3.up);
+            Direction = transform.forward;
         }
         else if (InputManager.sInstance.MoveVertical.magnitude > 0.707f)
         {
             transform.LookAt(transform.position + InputManager.sInstance.MoveVertical, Vector3.up);
+            Direction = transform.forward;
         }
     }
 
@@ -57,8 +59,6 @@ public class PlayerClass : MonoBehaviour
 
         m_isRunning = true;
 
-        yield return new WaitForSeconds(0.05f);
-
         while (t < 1f)
         {
             t += Time.deltaTime;
@@ -70,7 +70,7 @@ public class PlayerClass : MonoBehaviour
 
         transform.position = endPosition;
 
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.05f);
 
         m_isRunning = false;
     }
