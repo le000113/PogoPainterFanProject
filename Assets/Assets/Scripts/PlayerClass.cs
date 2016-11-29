@@ -55,14 +55,14 @@ public class PlayerClass : MonoBehaviour
     protected void RotatePlayer()
     {
         //Check to see if the player has not rotated the object yet.
-        if(m_isRotating == false)
+        if (m_isRotating == false)
         {
             //Check it's magnitutde to see if the input value is between 0 to 1.
             if (InputManager.sInstance.MoveHorizontal.magnitude > 0.707f)
             {
                 //Look at where the position the analog stick is pointing towards.
                 transform.LookAt(transform.position + InputManager.sInstance.MoveHorizontal, Vector3.up);
-                
+
                 //Set the direction to whatever it's faced.
                 Direction = transform.forward;
 
@@ -89,25 +89,30 @@ public class PlayerClass : MonoBehaviour
 
         float t = 0;
 
-        //Make sure the object is moving.
-        m_isRunning = true;
-
-        while (t < 1f)
+        //Make sure it doesn't go out of bounds.
+        if (!(endPosition.x < -1f || endPosition.x > 18 || endPosition.z < -1 || endPosition.z > 18))
         {
-            t += Time.deltaTime;
+            //Make sure the object is moving.
+            m_isRunning = true;
 
-            //Lerping it's position from the start to the end.
-            transform.position = Vector3.Lerp(startPosition, endPosition, t);
+            while (t < 1f)
+            {
+                t += Time.deltaTime;
 
-            yield return null;
+                //Lerping it's position from the start to the end.
+                transform.position = Vector3.Lerp(startPosition, endPosition, t);
+
+                yield return null;
+            }
+            //Make the objects position to wherever the end will be.
+            transform.position = endPosition;
+
+            //Have a delay in between the movement so that animation can blend in.
+            yield return new WaitForSeconds(0.02f);
+
+            //Set it back to false and run through the coroutine again.
+            m_isRunning = false;
         }
-        //Make the objects position to wherever the end will be.
-        transform.position = endPosition;
 
-        //Have a delay in between the movement so that animation can blend in.
-        yield return new WaitForSeconds(0.02f);
-
-        //Set it back to false and run through the coroutine again.
-        m_isRunning = false;
     }
 }
