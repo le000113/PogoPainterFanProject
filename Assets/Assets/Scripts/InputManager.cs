@@ -3,11 +3,12 @@ using System.Collections;
 
 public class InputManager : MonoBehaviour
 {
+    //Make it global.
     public static InputManager sInstance;
 
-    // Use this for initialization
     void Awake()
     {
+        //Check to see if it's null, if it is make it this.
         if (sInstance == null)
         {
             sInstance = this;

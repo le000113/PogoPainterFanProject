@@ -13,6 +13,7 @@ public class SpawnPoints : MonoBehaviour
 
     void LoadObjectsOnStart()
     {
+        //Spawn all the objects in the specified location.
         GameObject.Instantiate(spawnPoints[0], new Vector3(0, 0.7f, 0), Quaternion.identity);
 
         GameObject.Instantiate(spawnPoints[1], new Vector3(17.5f, 0.7f, 0), Quaternion.identity);
