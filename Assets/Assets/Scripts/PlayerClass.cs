@@ -113,6 +113,10 @@ public class PlayerClass : MonoBehaviour
             //Set it back to false and run through the coroutine again.
             m_isRunning = false;
         }
+    }
 
+    protected bool isColliding(Vector3 positionA, Vector3 positionB)
+    {
+        return true;
     }
 }
