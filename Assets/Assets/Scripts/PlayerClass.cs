@@ -5,8 +5,14 @@ using System.Collections.Generic;
 
 public class PlayerClass : MonoBehaviour
 {
+    public struct AABB
+    {
+        public Vector3 Min;
+        public Vector3 Max;
+    }
+
     private float m_Timer = 0f;
-    private float m_TileSize;
+    private float m_Tile;
 
     private bool m_isRotating;
     private bool m_isRunning;
@@ -25,7 +31,7 @@ public class PlayerClass : MonoBehaviour
     protected virtual void Start()
     {
         //Obtain the size for the tile.
-        m_TileSize = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileGenerator>().m_tileSize;
+        m_Tile = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileGenerator>().m_tileSize;
     }
 
     protected virtual void Update()
@@ -85,7 +91,7 @@ public class PlayerClass : MonoBehaviour
         startPosition = transform.position;
 
         //The end is where the next tile grid will be.
-        endPosition = startPosition + Direction * m_TileSize / 2;
+        endPosition = startPosition + Direction * m_Tile / 2;
 
         float t = 0;
 
@@ -115,8 +121,11 @@ public class PlayerClass : MonoBehaviour
         }
     }
 
-    protected bool isColliding(Vector3 positionA, Vector3 positionB)
+    protected bool isColliding(AABB box1, AABB box2)
     {
-        return true;
+        //AABB Formula.
+        return (box1.Max.x > box2.Min.x && box1.Min.x < box2.Max.x &&
+                box1.Max.y > box2.Min.y && box1.Min.y < box2.Max.y &&
+                box1.Max.z > box2.Min.z && box1.Min.z < box2.Max.z);
     }
 }

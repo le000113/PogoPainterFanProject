@@ -7,6 +7,9 @@ public class TileGenerator : MonoBehaviour
     [SerializeField]
     GameObject Tile;
 
+    [SerializeField]
+    GameObject ScoreBox;
+
     GameObject[,] Grid;
 
     Vector3 initialPosition;
@@ -19,7 +22,7 @@ public class TileGenerator : MonoBehaviour
 
     int GridSize;
 
-    public float m_tileSize { get; private set;}
+    public float m_tileSize { get; private set; }
 
     // Use this for initialization
     private void Start()
@@ -28,7 +31,7 @@ public class TileGenerator : MonoBehaviour
 
         GenerateGrid();
 
-        m_tileSize =  GameObject.FindGameObjectWithTag("Tile").GetComponentInChildren<MeshRenderer>().bounds.size.x * 2;
+        m_tileSize = GameObject.FindGameObjectWithTag("Tile").GetComponentInChildren<MeshRenderer>().bounds.size.x * 2;
 
         gridColors = new List<Color>();
 
@@ -48,7 +51,7 @@ public class TileGenerator : MonoBehaviour
 
     public void ChangeColors(Color aColor)
     {
-        for(int i = 0; i < gridColors.Count; ++i)
+        for (int i = 0; i < gridColors.Count; ++i)
         {
             //TODO know what tile they are in.
             gridColors[i] = aColor;
@@ -81,8 +84,18 @@ public class TileGenerator : MonoBehaviour
                 gridPlane.transform.position = new Vector3(initialPosition.x + i * m_offset, initialPosition.y, initialPosition.z + j * m_offset);
 
                 //Set the grid and then generate it.
-                Grid[i, j] = gridPlane;            
+                Grid[i, j] = gridPlane;
             }
+        }
+    }
+
+    private void SpawnRandomBox()
+    {
+        for (int i = 0; i < GridSize; ++i)
+        {
+            GameObject spawnBox = (GameObject)Instantiate(ScoreBox);
+
+            spawnBox.transform.position = new Vector3(Random.Range(i, GridSize), initialPosition.y, Random.Range(i, GridSize));
         }
     }
 }
