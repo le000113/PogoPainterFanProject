@@ -10,8 +10,7 @@ public class TileGenerator : MonoBehaviour
     [SerializeField]
     GameObject ScoreBox;
 
-    GameObject[,] Grid;
-    Vector3[,] GridPosition;
+    Tile[,] Grid;
 
     Vector3 initialPosition;
 
@@ -40,7 +39,7 @@ public class TileGenerator : MonoBehaviour
 
         InitializeColors();
 
-        gridColors[0] = Color.red;
+        //gridColors[0] = Color.red;
 
         for (int i = 0; i < gridColors.Count; ++i)
         {
@@ -58,10 +57,10 @@ public class TileGenerator : MonoBehaviour
         {
             for (int j = 0; j < positionTileY; ++j)
             {
-                if (aPlayerTile == GridPosition[i, j])
+                if (aPlayerTile == Grid[i, j].position)
                 {
                     //gridColors[i]=aColor;
-                    Grid[i, j].GetComponent<Renderer>().material.color = aColor;
+                    Grid[i, j].tile.GetComponent<Renderer>().material.color = aColor;
                 }
             }
         }
@@ -79,12 +78,12 @@ public class TileGenerator : MonoBehaviour
     private void GenerateGrid()
     {
         //Create the grid.
-        Grid = new GameObject[positionTileX + 1, positionTileY + 1];
-        GridPosition = new Vector3[positionTileX + 1, positionTileY + 1];
+        Grid = new Tile[positionTileX + 1, positionTileY + 1];     
 
         //Go through the rows from the x and y position.
         for (int i = 0; i < positionTileX; ++i)
         {
+            Debug.Log(i);
             for (int j = 0; j < positionTileY; ++j)
             {
                 //Create the tile.
@@ -94,8 +93,8 @@ public class TileGenerator : MonoBehaviour
                 gridPlane.transform.position = new Vector3(initialPosition.x + i * m_offset, initialPosition.y, initialPosition.z + j * m_offset);
 
                 //Set the grid and then generate it.
-                Grid[i, j] = gridPlane;
-                GridPosition[i, j] = gridPlane.transform.position;
+                Grid[i, j].tile = gridPlane;
+                Grid[i, j].position = gridPlane.transform.position;
             }
         }
     }
@@ -117,14 +116,12 @@ public class TileGenerator : MonoBehaviour
         {
             for (int j = 0; j < positionTileY; ++j)
             {
-                Debug.Log(GridPosition[i, j]);
-                if (aPosition == GridPosition[i, j])
+                if (aPosition == Grid[i, j].position)
                 {
-                    return GridPosition[i, j];
+                    return Grid[i, j].position;
                 }
             }
         }
-
         return Vector3.zero;
     }
 }

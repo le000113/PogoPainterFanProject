@@ -5,12 +5,6 @@ using System.Collections.Generic;
 
 public class PlayerClass : MonoBehaviour
 {
-    public struct AABB
-    {
-        public Vector3 Min;
-        public Vector3 Max;
-    }
-
     private float m_Timer = 0f;
     private float m_Tile;
     protected TileGenerator m_TileGenerator;
@@ -127,13 +121,5 @@ public class PlayerClass : MonoBehaviour
             //Set it back to false and run through the coroutine again.
             m_isRunning = false;
         }
-    }
-
-    protected bool isColliding(AABB box1, AABB box2)
-    {
-        //AABB Formula.
-        return (box1.Max.x > box2.Min.x && box1.Min.x < box2.Max.x &&
-                box1.Max.y > box2.Min.y && box1.Min.y < box2.Max.y &&
-                box1.Max.z > box2.Min.z && box1.Min.z < box2.Max.z);
     }
 }
