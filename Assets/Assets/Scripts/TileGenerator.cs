@@ -11,6 +11,7 @@ public class TileGenerator : MonoBehaviour
     GameObject ScoreBox;
 
     GameObject[,] Grid;
+    Vector3[,] GridPosition;
 
     Vector3 initialPosition;
 
@@ -45,16 +46,24 @@ public class TileGenerator : MonoBehaviour
         {
             if (gridColors[i] == Color.red)
             {
+                //Grid[0, 0].GetComponent<Renderer>().material.color = Color.red;
             }
         }
     }
 
-    public void ChangeColors(Color aColor)
+    public void ChangeColors(Color aColor, Vector3 aPlayerTile)
     {
-        for (int i = 0; i < gridColors.Count; ++i)
+        //TODO know what tile they are in.
+        for (int i = 0; i < positionTileX; ++i)
         {
-            //TODO know what tile they are in.
-            gridColors[i] = aColor;
+            for (int j = 0; j < positionTileY; ++j)
+            {
+                if (aPlayerTile == GridPosition[i, j])
+                {
+                    //gridColors[i]=aColor;
+                    Grid[i, j].GetComponent<Renderer>().material.color = aColor;
+                }
+            }
         }
     }
 
@@ -71,6 +80,7 @@ public class TileGenerator : MonoBehaviour
     {
         //Create the grid.
         Grid = new GameObject[positionTileX + 1, positionTileY + 1];
+        GridPosition = new Vector3[positionTileX + 1, positionTileY + 1];
 
         //Go through the rows from the x and y position.
         for (int i = 0; i < positionTileX; ++i)
@@ -85,6 +95,7 @@ public class TileGenerator : MonoBehaviour
 
                 //Set the grid and then generate it.
                 Grid[i, j] = gridPlane;
+                GridPosition[i, j] = gridPlane.transform.position;
             }
         }
     }
@@ -97,5 +108,23 @@ public class TileGenerator : MonoBehaviour
 
             spawnBox.transform.position = new Vector3(Random.Range(i, GridSize), initialPosition.y, Random.Range(i, GridSize));
         }
+    }
+
+    public Vector3 GetGridTile(Vector3 aPosition)
+    {
+        //Go through the rows from the x and y position.
+        for (int i = 0; i < positionTileX; ++i)
+        {
+            for (int j = 0; j < positionTileY; ++j)
+            {
+                Debug.Log(GridPosition[i, j]);
+                if (aPosition == GridPosition[i, j])
+                {
+                    return GridPosition[i, j];
+                }
+            }
+        }
+
+        return Vector3.zero;
     }
 }

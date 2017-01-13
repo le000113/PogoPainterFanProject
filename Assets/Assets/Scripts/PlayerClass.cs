@@ -13,6 +13,8 @@ public class PlayerClass : MonoBehaviour
 
     private float m_Timer = 0f;
     private float m_Tile;
+    protected TileGenerator m_TileGenerator;
+    protected Vector3 m_CurrentTile;
 
     private bool m_isRotating;
     private bool m_isRunning;
@@ -31,7 +33,8 @@ public class PlayerClass : MonoBehaviour
     protected virtual void Start()
     {
         //Obtain the size for the tile.
-        m_Tile = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileGenerator>().m_tileSize;
+        m_TileGenerator = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileGenerator>();
+        m_Tile = m_TileGenerator.m_tileSize;
     }
 
     protected virtual void Update()
@@ -112,6 +115,11 @@ public class PlayerClass : MonoBehaviour
             }
             //Make the objects position to wherever the end will be.
             transform.position = endPosition;
+            Vector3 playerpos = transform.position;
+            //Using tile's y position or else player is never considered on tile.
+            playerpos.y = 0;
+            m_CurrentTile = m_TileGenerator.GetGridTile(playerpos);
+            
 
             //Have a delay in between the movement so that animation can blend in.
             yield return new WaitForSeconds(0.02f);
