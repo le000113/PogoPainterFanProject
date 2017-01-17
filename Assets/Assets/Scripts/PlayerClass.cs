@@ -61,10 +61,10 @@ public class PlayerClass : MonoBehaviour
         if (m_isRotating == false)
         {
             //Check it's magnitutde to see if the input value is between 0 to 1.
-            if (InputManager.sInstance.MoveHorizontal.magnitude > 0.707f)
+            if (InputManager.sInstance.InputControllerHorizontal.magnitude > 0.707f)
             {
                 //Look at where the position the analog stick is pointing towards.
-                transform.LookAt(transform.position + InputManager.sInstance.MoveHorizontal, Vector3.up);
+                transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontal, Vector3.up);
 
                 //Set the direction to whatever it's faced.
                 Direction = transform.forward;
@@ -72,9 +72,9 @@ public class PlayerClass : MonoBehaviour
                 //If it's rotating this function will not be called again so soon.
                 m_isRotating = true;
             }
-            else if (InputManager.sInstance.MoveVertical.magnitude > 0.707f)
+            else if (InputManager.sInstance.InputControllerVertical.magnitude > 0.707f)
             {
-                transform.LookAt(transform.position + InputManager.sInstance.MoveVertical, Vector3.up);
+                transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical, Vector3.up);
                 Direction = transform.forward;
                 m_isRotating = true;
             }
@@ -109,7 +109,9 @@ public class PlayerClass : MonoBehaviour
             }
             //Make the objects position to wherever the end will be.
             transform.position = endPosition;
+
             Vector3 playerpos = transform.position;
+
             //Using tile's y position or else player is never considered on tile.
             playerpos.y = 0;
             m_CurrentTile = m_TileGenerator.GetGridTile(playerpos);

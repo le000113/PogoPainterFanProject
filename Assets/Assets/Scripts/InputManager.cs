@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public Vector3 MoveHorizontal
+    public Vector3 InputControllerHorizontal
     {
         get
         {
@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public Vector3 MoveVertical
+    public Vector3 InputControllerVertical
     {
         get
         {
@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public Vector3 InputControllerHorizontal
+    public Vector3 InputControllerHorizontalP2
     {
         get
         {
@@ -45,7 +45,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public Vector3 InputControllerVertical
+    public Vector3 InputControllerVerticalP2
     {
         get
         {
