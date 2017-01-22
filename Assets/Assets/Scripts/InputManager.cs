@@ -21,12 +21,12 @@ public class InputManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public Vector3 InputControllerHorizontalP1(string pHorizontal)
+    public Vector3 InputControllerHorizontal(string pHorizontal)
     {
         return new Vector3(Input.GetAxisRaw(pHorizontal), 0, 0);
     }
 
-    public Vector3 InputControllerVerticalP1(string pVertical)
+    public Vector3 InputControllerVertical(string pVertical)
     {
         return new Vector3(0, 0, Input.GetAxisRaw(pVertical));
     }

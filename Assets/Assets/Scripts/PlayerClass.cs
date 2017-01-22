@@ -16,6 +16,11 @@ public class PlayerClass : MonoBehaviour
     protected float m_Speed;
     protected float m_Angle = 90;
 
+    protected string pHorizontal;
+    protected string pVertical;
+
+    public int numPlayers;
+
     public float m_Score { get; protected set; }
 
     private Vector3 startPosition;
@@ -29,6 +34,10 @@ public class PlayerClass : MonoBehaviour
         //Obtain the size for the tile.
         m_TileGenerator = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileGenerator>();
         m_Tile = m_TileGenerator.m_tileSize;
+
+        //Go through the numbers.
+        pHorizontal = "P" + numPlayers + "Horizontal";
+        pVertical = "P" + numPlayers + "Vertical";
     }
 
     protected virtual void Update()
@@ -59,12 +68,12 @@ public class PlayerClass : MonoBehaviour
     {
         //Check to see if the player has not rotated the object yet.
         if (m_isRotating == false)
-        {      
+        {
             //Check it's magnitutde to see if the input value is between 0 to 1.
-            if (InputManager.sInstance.InputControllerHorizontalP1("P1Horizontal").magnitude > 0.707f)
+            if (InputManager.sInstance.InputControllerHorizontal(pHorizontal).magnitude > 0.707f)
             {
                 //Look at where the position the analog stick is pointing towards.
-                transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontalP1("pHoriztonal"), Vector3.up);
+                transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontal(pHorizontal), Vector3.up);
 
                 //Set the direction to whatever it's faced.
                 Direction = transform.forward;
@@ -72,13 +81,15 @@ public class PlayerClass : MonoBehaviour
                 //If it's rotating this function will not be called again so soon.
                 m_isRotating = true;
             }
-            else if (InputManager.sInstance.InputControllerVerticalP1("P1Vertical").magnitude > 0.707f)
+            else if (InputManager.sInstance.InputControllerVertical(pVertical).magnitude > 0.707f)
             {
-                transform.LookAt(transform.position + InputManager.sInstance.InputControllerVerticalP1("pVertical"), Vector3.up);
+                transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical(pVertical), Vector3.up);
                 Direction = transform.forward;
                 m_isRotating = true;
             }
         }
+
+        Debug.Log(pHorizontal);
     }
 
     private IEnumerator smoothMove_Cr()

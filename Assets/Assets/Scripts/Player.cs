@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Player : PlayerClass
 {
-    public Color pColor = Color.red;
+    public Color playerColor = Color.red;
     public Vector3 pDirection;
 
     protected override void Start()
     {
         base.Start();
-        color = pColor;
+        color = playerColor;
         m_Speed = 1;
         Direction = pDirection;
         m_CurrentTile = new Vector3(transform.position.x, 0, transform.position.z);
