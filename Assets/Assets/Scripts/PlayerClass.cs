@@ -57,59 +57,28 @@ public class PlayerClass : MonoBehaviour
 
     protected void RotatePlayer()
     {
-        int numPlayers = 4;
         //Check to see if the player has not rotated the object yet.
         if (m_isRotating == false)
-        {
-            switch (numPlayers)
+        {      
+            //Check it's magnitutde to see if the input value is between 0 to 1.
+            if (InputManager.sInstance.InputControllerHorizontalP1("P1Horizontal").magnitude > 0.707f)
             {
-                case 1:
-                    //Check it's magnitutde to see if the input value is between 0 to 1.
-                    if (InputManager.sInstance.InputControllerHorizontalP1.magnitude > 0.707f)
-                    {
-                        //Look at where the position the analog stick is pointing towards.
-                        transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontalP1, Vector3.up);
+                //Look at where the position the analog stick is pointing towards.
+                transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontalP1("pHoriztonal"), Vector3.up);
 
-                        //Set the direction to whatever it's faced.
-                        Direction = transform.forward;
+                //Set the direction to whatever it's faced.
+                Direction = transform.forward;
 
-                        //If it's rotating this function will not be called again so soon.
-                        m_isRotating = true;
-                    }
-                    else if (InputManager.sInstance.InputControllerVerticalP1.magnitude > 0.707f)
-                    {
-                        transform.LookAt(transform.position + InputManager.sInstance.InputControllerVerticalP1, Vector3.up);
-                        Direction = transform.forward;
-                        m_isRotating = true;
-                    }
-                    break;
-
-                case 2:
-                    //Check it's magnitutde to see if the input value is between 0 to 1.
-                    if (InputManager.sInstance.InputControllerHorizontalP2.magnitude > 0.707f)
-                    {
-                        //Look at where the position the analog stick is pointing towards.
-                        transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontalP2, Vector3.up);
-
-                        //Set the direction to whatever it's faced.
-                        Direction = transform.forward;
-
-                        //If it's rotating this function will not be called again so soon.
-                        m_isRotating = true;
-                    }
-                    else if (InputManager.sInstance.InputControllerVerticalP2.magnitude > 0.707f)
-                    {
-                        transform.LookAt(transform.position + InputManager.sInstance.InputControllerVerticalP2, Vector3.up);
-                        Direction = transform.forward;
-                        m_isRotating = true;
-                    }
-                    break;
-
-                default:
-                    break;
+                //If it's rotating this function will not be called again so soon.
+                m_isRotating = true;
+            }
+            else if (InputManager.sInstance.InputControllerVerticalP1("P1Vertical").magnitude > 0.707f)
+            {
+                transform.LookAt(transform.position + InputManager.sInstance.InputControllerVerticalP1("pVertical"), Vector3.up);
+                Direction = transform.forward;
+                m_isRotating = true;
             }
         }
-
     }
 
     private IEnumerator smoothMove_Cr()
@@ -145,7 +114,7 @@ public class PlayerClass : MonoBehaviour
             //Using tile's y position or else player is never considered on tile.
             playerpos.y = 0;
             m_CurrentTile = m_TileGenerator.GetGridTile(playerpos);
-            
+
 
             //Have a delay in between the movement so that animation can blend in.
             yield return new WaitForSeconds(0.02f);
