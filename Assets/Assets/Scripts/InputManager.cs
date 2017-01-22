@@ -21,19 +21,19 @@ public class InputManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public Vector3 InputControllerHorizontal
+    public Vector3 InputControllerHorizontalP1
     {
         get
         {
-            return new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+            return new Vector3(Input.GetAxisRaw("P1Horiztonal"), 0, 0);
         }
     }
 
-    public Vector3 InputControllerVertical
+    public Vector3 InputControllerVerticalP1
     {
         get
         {
-            return new Vector3(0, 0, Input.GetAxisRaw("Vertical"));
+            return new Vector3(0, 0, Input.GetAxisRaw("P1Vertical"));
         }
     }
 
@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
     {
         get
         {
-            return new Vector3(0, 0, 0); //TODO fix this.
+            return new Vector3(Input.GetAxisRaw("P2Horizontal"), 0, 0); 
         }
     }
 
@@ -49,7 +49,8 @@ public class InputManager : MonoBehaviour
     {
         get
         {
-            return new Vector3(0, 0, 0);
+            return new Vector3(0, 0, Input.GetAxisRaw("P2Vertical"));
         }
     }
+
 }

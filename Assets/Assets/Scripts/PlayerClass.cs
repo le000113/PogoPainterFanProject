@@ -57,26 +57,56 @@ public class PlayerClass : MonoBehaviour
 
     protected void RotatePlayer()
     {
+        int numPlayers = 4;
         //Check to see if the player has not rotated the object yet.
         if (m_isRotating == false)
         {
-            //Check it's magnitutde to see if the input value is between 0 to 1.
-            if (InputManager.sInstance.InputControllerHorizontal.magnitude > 0.707f)
+            switch (numPlayers)
             {
-                //Look at where the position the analog stick is pointing towards.
-                transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontal, Vector3.up);
+                case 1:
+                    //Check it's magnitutde to see if the input value is between 0 to 1.
+                    if (InputManager.sInstance.InputControllerHorizontalP1.magnitude > 0.707f)
+                    {
+                        //Look at where the position the analog stick is pointing towards.
+                        transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontalP1, Vector3.up);
 
-                //Set the direction to whatever it's faced.
-                Direction = transform.forward;
+                        //Set the direction to whatever it's faced.
+                        Direction = transform.forward;
 
-                //If it's rotating this function will not be called again so soon.
-                m_isRotating = true;
-            }
-            else if (InputManager.sInstance.InputControllerVertical.magnitude > 0.707f)
-            {
-                transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical, Vector3.up);
-                Direction = transform.forward;
-                m_isRotating = true;
+                        //If it's rotating this function will not be called again so soon.
+                        m_isRotating = true;
+                    }
+                    else if (InputManager.sInstance.InputControllerVerticalP1.magnitude > 0.707f)
+                    {
+                        transform.LookAt(transform.position + InputManager.sInstance.InputControllerVerticalP1, Vector3.up);
+                        Direction = transform.forward;
+                        m_isRotating = true;
+                    }
+                    break;
+
+                case 2:
+                    //Check it's magnitutde to see if the input value is between 0 to 1.
+                    if (InputManager.sInstance.InputControllerHorizontalP2.magnitude > 0.707f)
+                    {
+                        //Look at where the position the analog stick is pointing towards.
+                        transform.LookAt(transform.position + InputManager.sInstance.InputControllerHorizontalP2, Vector3.up);
+
+                        //Set the direction to whatever it's faced.
+                        Direction = transform.forward;
+
+                        //If it's rotating this function will not be called again so soon.
+                        m_isRotating = true;
+                    }
+                    else if (InputManager.sInstance.InputControllerVerticalP2.magnitude > 0.707f)
+                    {
+                        transform.LookAt(transform.position + InputManager.sInstance.InputControllerVerticalP2, Vector3.up);
+                        Direction = transform.forward;
+                        m_isRotating = true;
+                    }
+                    break;
+
+                default:
+                    break;
             }
         }
 

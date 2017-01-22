@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player1 : PlayerClass
+public class Player : PlayerClass
 {
+    public Color pColor = Color.red;
+    public Vector3 pDirection;
+
     protected override void Start()
     {
         base.Start();
-        color = Color.red;
+        color = pColor;
         m_Speed = 1;
-        Direction = transform.right;
+        Direction = pDirection;
         m_CurrentTile = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
     protected override void Update()
     {
         base.Update();
-        //Change da colours brah
+        //Changes the tile colour;
         m_TileGenerator.ChangeColors(color, m_CurrentTile);
 
         RotatePlayer();
