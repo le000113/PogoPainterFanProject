@@ -84,6 +84,11 @@ public class TileGenerator : MonoBehaviour
         }
     }
 
+    public Vector3 GetGridTile(int xPosition, int yPosition)
+    {
+        return Grid[xPosition, yPosition].position;
+    }
+
     public Vector3 GetGridTile(Vector3 aPosition)
     {
         //Go through the rows from the x and y position.
