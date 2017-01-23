@@ -7,8 +7,6 @@ public class PlayerClass : MonoBehaviour
 {
     private float m_Timer = 0f;
     private float m_Tile;
-    protected TileGenerator m_TileGenerator;
-    protected Vector3 m_CurrentTile;
 
     private bool m_isRotating;
     private bool m_isRunning;
@@ -28,6 +26,8 @@ public class PlayerClass : MonoBehaviour
 
     protected Color color;
     protected Vector3 Direction;
+    protected TileGenerator m_TileGenerator;
+    protected Vector3 m_CurrentTile;
 
     protected virtual void Start()
     {
@@ -35,7 +35,7 @@ public class PlayerClass : MonoBehaviour
         m_TileGenerator = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileGenerator>();
         m_Tile = m_TileGenerator.m_tileSize;
 
-        //Go through the numbers.
+        //Go through the numbers. And check what player it is.
         pHorizontal = "P" + numPlayers + "Horizontal";
         pVertical = "P" + numPlayers + "Vertical";
     }
@@ -88,8 +88,6 @@ public class PlayerClass : MonoBehaviour
                 m_isRotating = true;
             }
         }
-
-        Debug.Log(pHorizontal);
     }
 
     private IEnumerator smoothMove_Cr()
