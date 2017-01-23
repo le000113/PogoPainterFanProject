@@ -16,6 +16,5 @@ public class PowerUp : MonoBehaviour
     
     protected virtual void Upate()
     {
-        //fucking shit up JUST DO IT!!!!
     }
 }
