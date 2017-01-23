@@ -8,7 +8,7 @@ public class BoxSpawn : MonoBehaviour
 
     private int m_Counter;
 
-    private bool m_isLimitReached = false;
+    private bool m_isLimitReached;
 
     [SerializeField]
     GameObject boxObject;
@@ -24,18 +24,32 @@ public class BoxSpawn : MonoBehaviour
     {
         m_Timer += Time.deltaTime;
 
-        if (m_Timer >= 5)
-        {            
-            int x = Random.Range(0,8);
-            int y = Random.Range(0,8);
+        if(!m_isLimitReached)
+        {
+            if (m_Timer >= 5)
+            {
+                //Get the values between 0 and 8
+                int x = Random.Range(0, 8);
+                int y = Random.Range(0, 8);
 
-            GameObject spawnBox = (GameObject)Instantiate(boxObject);
+                //Spawn the box.
+                GameObject spawnBox = (GameObject)Instantiate(boxObject);
 
-            spawnBox.transform.position = tile.GetGridTile(x,y);
+                //Setting it's position.
+                spawnBox.transform.position = tile.GetGridTile(x, y);
 
-            m_Counter += 1;
+                //Adding a counter to how many boxes are in the game.
+                m_Counter += 1;
 
-            m_Timer = 0;
+                //Reset the timer.
+                m_Timer = 0;
+            }
+        }
+
+        //Makes sure it doesn't spawn more than 4 boxes at once.
+        if(m_Counter >= 4)
+        {
+            m_isLimitReached = true;
         }
     }
 

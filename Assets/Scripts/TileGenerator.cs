@@ -86,7 +86,11 @@ public class TileGenerator : MonoBehaviour
 
     public Vector3 GetGridTile(int xPosition, int yPosition)
     {
-        return Grid[xPosition, yPosition].position;
+        Vector3 tilePosition = Grid[xPosition, yPosition].position;
+
+        tilePosition.y = 0.7f;
+
+        return tilePosition;
     }
 
     public Vector3 GetGridTile(Vector3 aPosition)
