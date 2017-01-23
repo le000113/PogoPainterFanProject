@@ -17,8 +17,8 @@ public class Tile
     }
 
     public Vector3 position { private set; get; }
-    public Color color { private set; get; }
-    public bool m_isOccupied { private set; get; }
+    public Color color { set; get; }
+    public bool m_isOccupied { set; get; }
     public GameObject tile { private set; get; }
 }
 
