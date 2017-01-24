@@ -19,8 +19,6 @@ public class TileGenerator : MonoBehaviour
     int positionTileY = 8;
     float m_offset = 2.5f;
 
-    int GridSize;
-
     public float m_tileSize { get; private set; }
 
     // Use this for initialization
@@ -31,8 +29,6 @@ public class TileGenerator : MonoBehaviour
         GenerateGrid();
 
         m_tileSize = GameObject.FindGameObjectWithTag("Tile").GetComponentInChildren<MeshRenderer>().bounds.size.x * 2;
-
-        GridSize = positionTileX * positionTileY;
     }
 
     public void ChangeColors(Color aColor, Vector3 aPlayerTile)
