@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TileGenerator : MonoBehaviour
+public class TileManager : MonoBehaviour
 {
     [SerializeField]
     GameObject TileFloor;
