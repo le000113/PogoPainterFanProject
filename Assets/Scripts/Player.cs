@@ -12,14 +12,14 @@ public class Player : PlayerClass
         color = playerColor;
         m_Speed = 1;
         Direction = pDirection;
-        m_CurrentTile = new Vector3(transform.position.x, 0, transform.position.z);
+        m_CurrentTile = m_TileManager.GetGridTile(new Vector3(transform.position.x, 0, transform.position.z));
     }
 
     protected override void Update()
     {
         base.Update();
         //Changes the tile colour;
-        m_TileGenerator.ChangeColors(color, m_CurrentTile);
+        m_TileManager.ChangeColors(color, m_CurrentTile);
 
         RotatePlayer();
     }

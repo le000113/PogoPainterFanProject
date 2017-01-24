@@ -26,14 +26,14 @@ public class PlayerClass : MonoBehaviour
 
     protected Color color;
     protected Vector3 Direction;
-    protected TileManager m_TileGenerator;
-    protected Vector3 m_CurrentTile;
+    protected TileManager m_TileManager;
+    protected Tile m_CurrentTile;
 
     protected virtual void Start()
     {
         //Obtain the size for the tile.
-        m_TileGenerator = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileManager>();
-        m_Tile = m_TileGenerator.m_tileSize;
+        m_TileManager = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileManager>();
+        m_Tile = m_TileManager.m_tileSize;
 
         //Go through the numbers. And check what player it is.
         pHorizontal = "P" + numPlayers + "Horizontal";
@@ -92,6 +92,7 @@ public class PlayerClass : MonoBehaviour
 
     private IEnumerator smoothMove_Cr()
     {
+
         //set the starting point to whatever the players positioned at.
         startPosition = transform.position;
 
@@ -103,33 +104,43 @@ public class PlayerClass : MonoBehaviour
         //Make sure it doesn't go out of bounds.
         if (!(endPosition.x < -1f || endPosition.x > 18 || endPosition.z < -1 || endPosition.z > 18))
         {
-            //Make sure the object is moving.
-            m_isRunning = true;
+            Tile nextTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
 
-            while (t < 1f)
+            if (nextTile.m_isOccupied == false)
             {
-                t += Time.deltaTime;
+                //Make sure the object is moving.
+                m_isRunning = true;
 
-                //Lerping it's position from the start to the end.
-                transform.position = Vector3.Lerp(startPosition, endPosition, t);
+                while (t < 1f)
+                {
+                    t += Time.deltaTime;
 
-                yield return null;
+                    //Lerping it's position from the start to the end.
+                    transform.position = Vector3.Lerp(startPosition, endPosition, t);
+
+                    yield return null;
+                }
+                //Make the objects position to wherever the end will be.
+                transform.position = endPosition;
+
+                Vector3 playerpos = transform.position;
+
+                //Using tile's y position or else player is never considered on tile.
+                playerpos.y = 0;
+
+                //Previous tile is no longer occupied
+                m_CurrentTile.m_isOccupied = false;
+                //New current tile
+                m_CurrentTile = m_TileManager.GetGridTile(playerpos);
+                //Current/next tile is now occupied
+                m_CurrentTile.m_isOccupied = true;
+
+                //Have a delay in between the movement so that animation can blend in.
+                yield return new WaitForSeconds(0.02f);
+
+                //Set it back to false and run through the coroutine again.
+                m_isRunning = false;
             }
-            //Make the objects position to wherever the end will be.
-            transform.position = endPosition;
-
-            Vector3 playerpos = transform.position;
-
-            //Using tile's y position or else player is never considered on tile.
-            playerpos.y = 0;
-            m_CurrentTile = m_TileGenerator.GetGridTile(playerpos);
-
-
-            //Have a delay in between the movement so that animation can blend in.
-            yield return new WaitForSeconds(0.02f);
-
-            //Set it back to false and run through the coroutine again.
-            m_isRunning = false;
         }
     }
 }

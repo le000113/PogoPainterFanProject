@@ -36,7 +36,7 @@ public class BoxSpawn : MonoBehaviour
                 GameObject spawnBox = (GameObject)Instantiate(boxObject);
 
                 //Setting it's position.
-                spawnBox.transform.position = tile.GetGridTile(x, y);
+                spawnBox.transform.position = tile.GetGridTilePosition(x, y);
 
                 //Adding a counter to how many boxes are in the game.
                 m_Counter += 1;

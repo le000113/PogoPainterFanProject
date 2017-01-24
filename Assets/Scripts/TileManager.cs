@@ -31,13 +31,13 @@ public class TileManager : MonoBehaviour
         m_tileSize = GameObject.FindGameObjectWithTag("Tile").GetComponentInChildren<MeshRenderer>().bounds.size.x * 2;
     }
 
-    public void ChangeColors(Color aColor, Vector3 aPlayerTile)
+    public void ChangeColors(Color aColor, Tile aPlayerTile)
     {
         for (int i = 0; i < positionTileX; ++i)
         {
             for (int j = 0; j < positionTileY; ++j)
             {
-                if (aPlayerTile == Grid[i, j].position)
+                if (aPlayerTile == Grid[i, j])
                 {
                     //Used for collecting points later
                     Grid[i, j].color = aColor;
@@ -64,13 +64,15 @@ public class TileManager : MonoBehaviour
                 //Set the tiles positions.
                 gridPlane.transform.position = new Vector3(initialPosition.x + i * m_offset, initialPosition.y, initialPosition.z + j * m_offset);
 
+                Vector2 coords = new Vector2(i, j);
+
                 //Set the grid and then generate it.
-                Grid[i, j] = new Tile(gridPlane.transform.position, Color.white, false, gridPlane);
+                Grid[i, j] = new Tile(gridPlane.transform.position, Color.white, false, gridPlane, coords);
             }
         }
     }
 
-    public Vector3 GetGridTile(int xPosition, int yPosition)
+    public Vector3 GetGridTilePosition(int xPosition, int yPosition)
     {
         Vector3 tilePosition = Grid[xPosition, yPosition].position;
 
@@ -79,7 +81,7 @@ public class TileManager : MonoBehaviour
         return tilePosition;
     }
 
-    public Vector3 GetGridTile(Vector3 aPosition)
+    public Tile GetGridTile(Vector3 aPosition)
     {
         //Go through the rows from the x and y position.
         for (int i = 0; i < positionTileX; ++i)
@@ -88,10 +90,22 @@ public class TileManager : MonoBehaviour
             {
                 if (aPosition == Grid[i,j].position)
                 {
-                    return Grid[i, j].position;
+                    return Grid[i, j];
                 }
             }
         }
-        return Vector3.zero;
+        return null;
+    }
+
+    //Gets the tile infront of the player depending on their direction
+    public Tile GetNextTile(Vector3 aDirection, Tile aCurrentTile)
+    {
+        float currentXCoord = aCurrentTile.coordinates.x;
+        float currentYCoord = aCurrentTile.coordinates.y;
+
+        int x = (int)(currentXCoord + aDirection.x);
+        int y = (int)(currentYCoord + aDirection.z);
+
+        return Grid[x, y];
     }
 }
