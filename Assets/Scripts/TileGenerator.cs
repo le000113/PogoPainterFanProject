@@ -74,16 +74,6 @@ public class TileGenerator : MonoBehaviour
         }
     }
 
-    private void SpawnRandomBox()
-    {
-        for (int i = 0; i < GridSize; ++i)
-        {
-            GameObject spawnBox = (GameObject)Instantiate(ScoreBox);
-
-            spawnBox.transform.position = new Vector3(Random.Range(i, GridSize), initialPosition.y, Random.Range(i, GridSize));
-        }
-    }
-
     public Vector3 GetGridTile(int xPosition, int yPosition)
     {
         Vector3 tilePosition = Grid[xPosition, yPosition].position;
