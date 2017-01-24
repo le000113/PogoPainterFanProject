@@ -26,13 +26,13 @@ public class PlayerClass : MonoBehaviour
 
     protected Color color;
     protected Vector3 Direction;
-    protected TileGenerator m_TileGenerator;
+    protected TileManager m_TileGenerator;
     protected Vector3 m_CurrentTile;
 
     protected virtual void Start()
     {
         //Obtain the size for the tile.
-        m_TileGenerator = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileGenerator>();
+        m_TileGenerator = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileManager>();
         m_Tile = m_TileGenerator.m_tileSize;
 
         //Go through the numbers. And check what player it is.

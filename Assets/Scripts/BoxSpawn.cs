@@ -13,11 +13,11 @@ public class BoxSpawn : MonoBehaviour
     [SerializeField]
     GameObject boxObject;
 
-    TileGenerator tile;
+    TileManager tile;
 
     private void Start()
     {
-        tile = GetComponent<TileGenerator>();
+        tile = GetComponent<TileManager>();
     }
 
     private void Update()
