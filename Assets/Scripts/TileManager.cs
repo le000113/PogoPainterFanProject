@@ -67,7 +67,7 @@ public class TileManager : MonoBehaviour
                 Vector2 coords = new Vector2(i, j);
 
                 //Set the grid and then generate it.
-                Grid[i, j] = new Tile(gridPlane.transform.position, Color.white, false, gridPlane, coords);
+                Grid[i, j] = new Tile(gridPlane.transform.position, Color.white, 0, gridPlane, coords);
             }
         }
     }
@@ -88,7 +88,7 @@ public class TileManager : MonoBehaviour
         {
             for (int j = 0; j < positionTileY; ++j)
             {
-                if (aPosition == Grid[i,j].position)
+                if (aPosition == Grid[i, j].position)
                 {
                     return Grid[i, j];
                 }

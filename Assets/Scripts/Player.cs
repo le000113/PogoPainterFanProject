@@ -5,6 +5,7 @@ public class Player : PlayerClass
 {
     public Color playerColor = Color.red;
     public Vector3 pDirection;
+    public uint m_PlayerNumber;
 
     protected override void Start()
     {
@@ -12,6 +13,7 @@ public class Player : PlayerClass
         color = playerColor;
         m_Speed = 1;
         Direction = pDirection;
+        m_PlayerClaimNumber = m_PlayerNumber;
         m_CurrentTile = m_TileManager.GetGridTile(new Vector3(transform.position.x, 0, transform.position.z));
     }
 

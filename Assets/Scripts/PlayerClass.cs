@@ -8,8 +8,8 @@ public class PlayerClass : MonoBehaviour
     private float m_Timer = 0f;
     private float m_Tile;
 
-    private bool m_isRotating;
-    private bool m_isRunning;
+    private bool m_canRotate;
+    protected bool m_isRunning;
 
     protected float m_Speed;
     protected float m_Angle = 90;
@@ -28,6 +28,7 @@ public class PlayerClass : MonoBehaviour
     protected Vector3 Direction;
     protected TileManager m_TileManager;
     protected Tile m_CurrentTile;
+    protected uint m_PlayerClaimNumber;
 
     protected virtual void Start()
     {
@@ -42,21 +43,7 @@ public class PlayerClass : MonoBehaviour
 
     protected virtual void Update()
     {
-        //Call the movement function.
-        Movement();
-
-        //Set a timer so that the player can't rotate too fast.
-        m_Timer += Time.deltaTime;
-        if (m_Timer >= 1f)
-        {
-            //if it's not rotating anymore, set it to false.
-            m_isRotating = false;
-            m_Timer = 0;
-        }
-    }
-
-    private void Movement()
-    {
+        //Movement
         if (!m_isRunning)
         {
             //Start the Coroutine.
@@ -67,7 +54,7 @@ public class PlayerClass : MonoBehaviour
     protected void RotatePlayer()
     {
         //Check to see if the player has not rotated the object yet.
-        if (m_isRotating == false)
+        if (m_canRotate == true)
         {
             //Check it's magnitutde to see if the input value is between 0 to 1.
             if (InputManager.sInstance.InputControllerHorizontal(pHorizontal).magnitude > 0.707f)
@@ -77,15 +64,11 @@ public class PlayerClass : MonoBehaviour
 
                 //Set the direction to whatever it's faced.
                 Direction = transform.forward;
-
-                //If it's rotating this function will not be called again so soon.
-                m_isRotating = true;
             }
             else if (InputManager.sInstance.InputControllerVertical(pVertical).magnitude > 0.707f)
             {
                 transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical(pVertical), Vector3.up);
                 Direction = transform.forward;
-                m_isRotating = true;
             }
         }
     }
@@ -106,10 +89,16 @@ public class PlayerClass : MonoBehaviour
         {
             Tile nextTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
 
-            if (nextTile.m_isOccupied == false)
+            if (nextTile.m_OccupiedByPlayer == 0 || nextTile.m_OccupiedByPlayer == m_PlayerClaimNumber &&
+                nextTile.m_IsOccupied == false)
             {
+                //So you can't rotate while moving
+                m_canRotate = false;
+
                 //Make sure the object is moving.
                 m_isRunning = true;
+                //No longer occupied
+                //m_CurrentTile.m_OccupiedByPlayer = 0;
 
                 while (t < 1f)
                 {
@@ -129,18 +118,41 @@ public class PlayerClass : MonoBehaviour
                 playerpos.y = 0;
 
                 //Previous tile is no longer occupied
-                m_CurrentTile.m_isOccupied = false;
+                m_CurrentTile.m_IsOccupied = false;
                 //New current tile
                 m_CurrentTile = m_TileManager.GetGridTile(playerpos);
-                //Current/next tile is now occupied
-                m_CurrentTile.m_isOccupied = true;
+                //m_CurrentTile.m_OccupiedByPlayer = 0;
 
+                //Now you can rotate AKA not moving
+                m_canRotate = true;
                 //Have a delay in between the movement so that animation can blend in.
                 yield return new WaitForSeconds(0.02f);
 
+                //Ready for next movement so can't rotate
+                m_canRotate = false;
                 //Set it back to false and run through the coroutine again.
                 m_isRunning = false;
+                //Occupy the next tile to move on
+                //nextTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
+                //if (nextTile != null)
+                {
+                    //nextTile.m_OccupiedByPlayer = m_PlayerClaimNumber;
+
+                    //if (nextTile.m_OccupiedByPlayer != m_PlayerClaimNumber)
+                    //{
+                    //    //Not usable at all so we don't collide
+                    //    Debug.Log(nextTile.m_OccupiedByPlayer);
+                    //    nextTile.m_OccupiedByPlayer = 5;
+                    //}
+                }
+
+                //Current/next tile is now occupied
+                //m_CurrentTile.m_OccupiedByPlayer = m_PlayerClaimNumber;
+                m_CurrentTile.m_IsOccupied = true;
             }
+
+            //If you can't move then you can rotate
+            m_canRotate = true;
         }
     }
 }
