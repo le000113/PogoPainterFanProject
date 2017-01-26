@@ -21,11 +21,15 @@ public class PlayerClass : MonoBehaviour
 
     public float m_Score { get; protected set; }
 
+    [SerializeField]
+    private GameObject tileChecker;
+
     private Vector3 startPosition;
     private Vector3 endPosition;
 
     protected Color color;
     protected Vector3 Direction;
+
     protected TileManager m_TileManager;
     protected Tile m_CurrentTile;
     protected uint m_PlayerClaimNumber;
@@ -39,6 +43,7 @@ public class PlayerClass : MonoBehaviour
         //Go through the numbers. And check what player it is.
         pHorizontal = "P" + numPlayers + "Horizontal";
         pVertical = "P" + numPlayers + "Vertical";
+
     }
 
     protected virtual void Update()
@@ -75,6 +80,7 @@ public class PlayerClass : MonoBehaviour
 
     private IEnumerator smoothMove_Cr()
     {
+        int mask = 1 << 8;
 
         //set the starting point to whatever the players positioned at.
         startPosition = transform.position;
@@ -83,22 +89,16 @@ public class PlayerClass : MonoBehaviour
         endPosition = startPosition + Direction * m_Tile / 2;
 
         float t = 0;
-
         //Make sure it doesn't go out of bounds.
         if (!(endPosition.x < -1f || endPosition.x > 18 || endPosition.z < -1 || endPosition.z > 18))
         {
-            Tile nextTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
-
-            if (nextTile.m_OccupiedByPlayer == 0 || nextTile.m_OccupiedByPlayer == m_PlayerClaimNumber &&
-                nextTile.m_IsOccupied == false)
+            if (!Physics.Raycast(transform.position + transform.forward, transform.forward, 3.0f, mask))
             {
                 //So you can't rotate while moving
                 m_canRotate = false;
 
                 //Make sure the object is moving.
                 m_isRunning = true;
-                //No longer occupied
-                //m_CurrentTile.m_OccupiedByPlayer = 0;
 
                 while (t < 1f)
                 {
@@ -117,11 +117,8 @@ public class PlayerClass : MonoBehaviour
                 //Using tile's y position or else player is never considered on tile.
                 playerpos.y = 0;
 
-                //Previous tile is no longer occupied
-                m_CurrentTile.m_IsOccupied = false;
                 //New current tile
                 m_CurrentTile = m_TileManager.GetGridTile(playerpos);
-                //m_CurrentTile.m_OccupiedByPlayer = 0;
 
                 //Now you can rotate AKA not moving
                 m_canRotate = true;
@@ -132,27 +129,10 @@ public class PlayerClass : MonoBehaviour
                 m_canRotate = false;
                 //Set it back to false and run through the coroutine again.
                 m_isRunning = false;
-                //Occupy the next tile to move on
-                //nextTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
-                //if (nextTile != null)
-                {
-                    //nextTile.m_OccupiedByPlayer = m_PlayerClaimNumber;
-
-                    //if (nextTile.m_OccupiedByPlayer != m_PlayerClaimNumber)
-                    //{
-                    //    //Not usable at all so we don't collide
-                    //    Debug.Log(nextTile.m_OccupiedByPlayer);
-                    //    nextTile.m_OccupiedByPlayer = 5;
-                    //}
-                }
-
-                //Current/next tile is now occupied
-                //m_CurrentTile.m_OccupiedByPlayer = m_PlayerClaimNumber;
-                m_CurrentTile.m_IsOccupied = true;
-            }
-
-            //If you can't move then you can rotate
-            m_canRotate = true;
+            }         
         }
+        //If you can't move then you can rotate
+        m_canRotate = true;
     }
 }
+

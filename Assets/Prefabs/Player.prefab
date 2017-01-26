@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33000010124765142}
   - component: {fileID: 135000011013254334}
   - component: {fileID: 23000013128066290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 65000011440170496}
   - component: {fileID: 23000014042894882}
   - component: {fileID: 114000012951827132}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player1
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numPlayers: 1
+  tileChecker: {fileID: 0}
   playerColor: {r: 1, g: 0, b: 0, a: 1}
   pDirection: {x: 1, y: 0, z: 0}
   m_PlayerNumber: 1
