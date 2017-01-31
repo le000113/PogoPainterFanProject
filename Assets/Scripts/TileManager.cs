@@ -43,6 +43,7 @@ public class TileManager : MonoBehaviour
                     Grid[i, j].color = aColor;
                     //Actually changing the color
                     Grid[i, j].tile.GetComponent<Renderer>().material.color = aColor;
+
                 }
             }
         }
@@ -67,7 +68,7 @@ public class TileManager : MonoBehaviour
                 Vector2 coords = new Vector2(i, j);
 
                 //Set the grid and then generate it.
-                Grid[i, j] = new Tile(gridPlane.transform.position, Color.white, 0, gridPlane, coords);
+                Grid[i, j] = new Tile(gridPlane.transform.position, Color.white, false, gridPlane, coords);
             }
         }
     }

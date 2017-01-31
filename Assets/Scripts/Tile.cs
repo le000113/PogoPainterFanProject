@@ -8,11 +8,11 @@ public class Tile
 
     }
 
-    public Tile(Vector3 aPosition, Color aColor, uint aOcupied, GameObject aTile, Vector2 aCoords)
+    public Tile(Vector3 aPosition, Color aColor, bool aOcupied, GameObject aTile, Vector2 aCoords)
     {
         position = aPosition;
         color = aColor;
-        m_OccupiedByPlayer = aOcupied;
+        m_IsOccupied = aOcupied;
         tile = aTile;
         coordinates = aCoords;
     }

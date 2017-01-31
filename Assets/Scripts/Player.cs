@@ -15,6 +15,9 @@ public class Player : PlayerClass
         Direction = pDirection;
         m_PlayerClaimNumber = m_PlayerNumber;
         m_CurrentTile = m_TileManager.GetGridTile(new Vector3(transform.position.x, 0, transform.position.z));
+
+        //CHANGE set up forward tile
+        m_ForwardTile = m_TileManager.GetGridTile(new Vector3(transform.position.x, 0, transform.position.z) + (transform.forward * 2.5f));
     }
 
     protected override void Update()

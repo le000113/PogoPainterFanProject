@@ -32,6 +32,10 @@ public class PlayerClass : MonoBehaviour
 
     protected TileManager m_TileManager;
     protected Tile m_CurrentTile;
+
+    //CHANGE here get a tile for forward
+    protected Tile m_ForwardTile;
+
     protected uint m_PlayerClaimNumber;
 
     protected virtual void Start()
@@ -89,11 +93,17 @@ public class PlayerClass : MonoBehaviour
         endPosition = startPosition + Direction * m_Tile / 2;
 
         float t = 0;
+
         //Make sure it doesn't go out of bounds.
         if (!(endPosition.x < -1f || endPosition.x > 18 || endPosition.z < -1 || endPosition.z > 18))
         {
-            if (!Physics.Raycast(transform.position + transform.forward, transform.forward, 3.0f, mask))
+            // if (!Physics.Raycast(transform.position + transform.forward, transform.forward, 3.0f, mask))
+
+            //CHANGE Here cheacking for forward tile is occupied
+            if (!m_ForwardTile.m_IsOccupied)
             {
+                m_CurrentTile.m_IsOccupied = false;
+                m_ForwardTile.m_IsOccupied = true;
                 //So you can't rotate while moving
                 m_canRotate = false;
 
@@ -120,6 +130,9 @@ public class PlayerClass : MonoBehaviour
                 //New current tile
                 m_CurrentTile = m_TileManager.GetGridTile(playerpos);
 
+                //CHANGE get forward tile after moved
+                m_ForwardTile = m_TileManager.GetGridTile(playerpos + (transform.forward * 2.5f));
+
                 //Now you can rotate AKA not moving
                 m_canRotate = true;
                 //Have a delay in between the movement so that animation can blend in.
@@ -129,7 +142,7 @@ public class PlayerClass : MonoBehaviour
                 m_canRotate = false;
                 //Set it back to false and run through the coroutine again.
                 m_isRunning = false;
-            }         
+            }
         }
         //If you can't move then you can rotate
         m_canRotate = true;
