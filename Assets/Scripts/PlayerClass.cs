@@ -80,12 +80,17 @@ public class PlayerClass : MonoBehaviour
                 Direction = transform.forward;
             }
         }
+        Vector3 playerpos = transform.position;
+
+        //Using tile's y position or else player is never considered on tile.
+        playerpos.y = 0;
+
+        m_ForwardTile = m_TileManager.GetGridTile(playerpos + (transform.forward * 2.5f));
+
     }
 
     private IEnumerator smoothMove_Cr()
     {
-        int mask = 1 << 8;
-
         //set the starting point to whatever the players positioned at.
         startPosition = transform.position;
 
@@ -97,8 +102,6 @@ public class PlayerClass : MonoBehaviour
         //Make sure it doesn't go out of bounds.
         if (!(endPosition.x < -1f || endPosition.x > 18 || endPosition.z < -1 || endPosition.z > 18))
         {
-            // if (!Physics.Raycast(transform.position + transform.forward, transform.forward, 3.0f, mask))
-
             //CHANGE Here cheacking for forward tile is occupied
             if (!m_ForwardTile.m_IsOccupied)
             {

@@ -77,7 +77,8 @@ public class TileManager : MonoBehaviour
     {
         Vector3 tilePosition = Grid[xPosition, yPosition].position;
 
-        tilePosition.y = 0.7f;
+        tilePosition.y = 0.2f;
+        //tilePosition.z = 0.6f;
 
         return tilePosition;
     }

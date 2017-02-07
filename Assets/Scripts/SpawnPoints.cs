@@ -15,7 +15,6 @@ public class SpawnPoints : MonoBehaviour
 
     void LoadObjectsOnStart()
     {
-
         //Spawn all the objects in the specified location.
         players = GameObject.Instantiate(spawnPoints[0], new Vector3(0, 0.7f, 0), Quaternion.identity);
         players.transform.localEulerAngles = new Vector3(0, 90, 0);
