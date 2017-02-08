@@ -5,7 +5,7 @@ public class Player : PlayerClass
 {
     public Color playerColor = Color.red;
     public Vector3 pDirection;
-    public uint m_PlayerNumber;
+    public bool isBot;
 
     protected override void Start()
     {
@@ -13,7 +13,6 @@ public class Player : PlayerClass
         color = playerColor;
         m_Speed = 1;
         Direction = pDirection;
-        m_PlayerClaimNumber = m_PlayerNumber;
         m_CurrentTile = m_TileManager.GetGridTile(new Vector3(transform.position.x, 0, transform.position.z));
 
         //CHANGE set up forward tile
@@ -26,6 +25,13 @@ public class Player : PlayerClass
         //Changes the tile colour;
         m_TileManager.ChangeColors(color, m_CurrentTile);
 
-        RotatePlayer();
+        if (isBot == false)
+        {
+            RotatePlayer();
+        }
+        else
+        {
+            RotateBot();
+        }
     }
 }

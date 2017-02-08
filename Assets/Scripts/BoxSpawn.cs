@@ -53,6 +53,6 @@ public class BoxSpawn : MonoBehaviour
             m_isLimitReached = true;
         }
 
-        Debug.Log(m_Counter);
+        //Debug.Log(m_Counter);
     }
 }

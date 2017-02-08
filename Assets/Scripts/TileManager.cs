@@ -105,9 +105,16 @@ public class TileManager : MonoBehaviour
         float currentXCoord = aCurrentTile.coordinates.x;
         float currentYCoord = aCurrentTile.coordinates.y;
 
-        int x = (int)(currentXCoord + aDirection.x);
-        int y = (int)(currentYCoord + aDirection.z);
+        int x = (int)(currentXCoord + Mathf.Round(aDirection.x));
+        int y = (int)(currentYCoord + Mathf.Round(aDirection.z));
 
-        return Grid[x, y];
+        if (x >= 0 && y >= 0)
+        {
+            return Grid[x, y];
+        }
+        else
+        {
+            return null;
+        }
     }
 }

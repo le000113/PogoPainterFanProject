@@ -19,7 +19,6 @@ public class Tile
 
     public Vector3 position { private set; get; }
     public Color color { set; get; }
-    public uint m_OccupiedByPlayer { set; get; }
     public bool m_IsOccupied;
     public GameObject tile { private set; get; }
     public Vector2 coordinates { private set; get; }

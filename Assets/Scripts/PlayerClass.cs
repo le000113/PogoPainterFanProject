@@ -36,8 +36,6 @@ public class PlayerClass : MonoBehaviour
     //CHANGE here get a tile for forward
     protected Tile m_ForwardTile;
 
-    protected uint m_PlayerClaimNumber;
-
     protected virtual void Start()
     {
         //Obtain the size for the tile.
@@ -79,14 +77,36 @@ public class PlayerClass : MonoBehaviour
                 transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical(pVertical), Vector3.up);
                 Direction = transform.forward;
             }
+            Vector3 playerpos = transform.position;
+
+            //Using tile's y position or else player is never considered on tile.
+            playerpos.y = 0;
+
+            m_ForwardTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
         }
-        Vector3 playerpos = transform.position;
+    }
 
-        //Using tile's y position or else player is never considered on tile.
-        playerpos.y = 0;
+    //Rotation for the AI. Basically all the AI code goes here cuz this is the only thing that affects their movement.
+    protected void RotateBot()
+    {
+        //Check to see if the player has not rotated the object yet.
+        if (m_canRotate == true)
+        {
+                //transform.LookAt(transform.position + -transform.right, Vector3.up);
 
-        m_ForwardTile = m_TileManager.GetGridTile(playerpos + (transform.forward * 2.5f));
+                //Set the direction to whatever it's faced.
+                Direction = transform.forward;
 
+                //transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical(pVertical), Vector3.up);
+                Direction = transform.forward;
+            
+            Vector3 playerpos = transform.position;
+
+            //Using tile's y position or else player is never considered on tile.
+            playerpos.y = 0;
+
+            m_ForwardTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
+        }
     }
 
     private IEnumerator smoothMove_Cr()
@@ -134,7 +154,7 @@ public class PlayerClass : MonoBehaviour
                 m_CurrentTile = m_TileManager.GetGridTile(playerpos);
 
                 //CHANGE get forward tile after moved
-                m_ForwardTile = m_TileManager.GetGridTile(playerpos + (transform.forward * 2.5f));
+                m_ForwardTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
 
                 //Now you can rotate AKA not moving
                 m_canRotate = true;
