@@ -8,7 +8,7 @@ public class PlayerClass : MonoBehaviour
     private float m_Timer = 0f;
     private float m_Tile;
 
-    private bool m_canRotate;
+    protected bool m_canRotate;
     protected bool m_isRunning;
 
     protected float m_Speed;
@@ -86,28 +86,7 @@ public class PlayerClass : MonoBehaviour
         }
     }
 
-    //Rotation for the AI. Basically all the AI code goes here cuz this is the only thing that affects their movement.
-    protected void RotateBot()
-    {
-        //Check to see if the player has not rotated the object yet.
-        if (m_canRotate == true)
-        {
-                //transform.LookAt(transform.position + -transform.right, Vector3.up);
-
-                //Set the direction to whatever it's faced.
-                Direction = transform.forward;
-
-                //transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical(pVertical), Vector3.up);
-                Direction = transform.forward;
-            
-            Vector3 playerpos = transform.position;
-
-            //Using tile's y position or else player is never considered on tile.
-            playerpos.y = 0;
-
-            m_ForwardTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
-        }
-    }
+    
 
     private IEnumerator smoothMove_Cr()
     {

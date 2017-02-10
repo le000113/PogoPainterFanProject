@@ -29,7 +29,6 @@ public class Box : MonoBehaviour
             child.gameObject.AddComponent<BoxCollider>();
             child.gameObject.AddComponent<Rigidbody>().AddForce(force);
 
-            BoxSpawn.m_Counter -= 1;
         }
 
         isBroken = true;

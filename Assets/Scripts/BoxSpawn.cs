@@ -7,7 +7,7 @@ public class BoxSpawn : MonoBehaviour
 
     private float m_Timer;
 
-    public static int m_Counter;
+    public int m_Counter;
 
     private bool m_isLimitReached;
 

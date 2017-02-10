@@ -25,13 +25,7 @@ public class Player : PlayerClass
         //Changes the tile colour;
         m_TileManager.ChangeColors(color, m_CurrentTile);
 
-        if (isBot == false)
-        {
-            RotatePlayer();
-        }
-        else
-        {
-            RotateBot();
-        }
+        RotatePlayer();
+
     }
 }
