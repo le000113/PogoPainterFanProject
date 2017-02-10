@@ -78,7 +78,6 @@ public class TileManager : MonoBehaviour
         Vector3 tilePosition = Grid[xPosition, yPosition].position;
 
         tilePosition.y = 0.2f;
-        //tilePosition.z = 0.6f;
 
         return tilePosition;
     }
@@ -97,6 +96,11 @@ public class TileManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void SetPowerUp(int x, int y, string aPowerup)
+    {
+        Grid[x, y].powerUp = aPowerup;
     }
 
     //Gets the tile infront of the player depending on their direction

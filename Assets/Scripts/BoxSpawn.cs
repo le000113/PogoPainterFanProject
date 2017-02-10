@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BoxSpawn : MonoBehaviour
 {
+    private const float BOX_SPAWN_TIMER = 10f;
 
     private float m_Timer;
 
-    public int m_Counter;
+    public static int m_Counter;
 
     private bool m_isLimitReached;
 
@@ -27,7 +28,7 @@ public class BoxSpawn : MonoBehaviour
 
         if (!m_isLimitReached)
         {
-            if (m_Timer >= 2)
+            if (m_Timer >= BOX_SPAWN_TIMER)
             {
                 //Get the values between 0 and 8
                 int x = Random.Range(0, 8);
@@ -51,6 +52,13 @@ public class BoxSpawn : MonoBehaviour
         if (m_Counter >= 3)
         {
             m_isLimitReached = true;
+        }
+        else
+        {
+            if(m_isLimitReached == true)
+            {
+                m_isLimitReached = false;
+            }
         }
 
         //Debug.Log(m_Counter);

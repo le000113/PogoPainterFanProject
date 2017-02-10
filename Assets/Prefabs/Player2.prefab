@@ -174,11 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38baba454d710d43a2c13080f60651d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numPlayers: 3
-  tileChecker: {fileID: 0}
+  numPlayers: 2
   playerColor: {r: 0, g: 1, b: 0.95862055, a: 1}
   pDirection: {x: -1, y: 0, z: 0}
-  m_PlayerNumber: 3
+  isBot: 0
 --- !u!135 &135000012566815414
 SphereCollider:
   m_ObjectHideFlags: 1

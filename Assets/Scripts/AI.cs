@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : PlayerClass
+public class AI : BasePlayer
 {
     public Color playerColor;
     public Vector3 pDirection;

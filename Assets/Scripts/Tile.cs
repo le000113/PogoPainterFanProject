@@ -22,6 +22,7 @@ public class Tile
     public bool m_IsOccupied;
     public GameObject tile { private set; get; }
     public Vector2 coordinates { private set; get; }
+    public string powerUp { set; get; }
 }
 
  

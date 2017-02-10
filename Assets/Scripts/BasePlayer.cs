@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class PlayerClass : MonoBehaviour
+public class BasePlayer : MonoBehaviour
 {
     private float m_Timer = 0f;
     private float m_Tile;
@@ -20,9 +20,6 @@ public class PlayerClass : MonoBehaviour
     public int numPlayers;
 
     public float m_Score { get; protected set; }
-
-    [SerializeField]
-    private GameObject tileChecker;
 
     private Vector3 startPosition;
     private Vector3 endPosition;

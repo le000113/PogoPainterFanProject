@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : PlayerClass
+public class Player : BasePlayer
 {
     public Color playerColor = Color.red;
     public Vector3 pDirection;
@@ -26,6 +26,5 @@ public class Player : PlayerClass
         m_TileManager.ChangeColors(color, m_CurrentTile);
 
         RotatePlayer();
-
     }
 }

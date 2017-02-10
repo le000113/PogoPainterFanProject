@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 65000011440170496}
   - component: {fileID: 23000014042894882}
   - component: {fileID: 114000012951827132}
+  - component: {fileID: 114521528653032992}
   m_Layer: 8
   m_Name: Player3
   m_TagString: Player1
@@ -174,11 +175,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38baba454d710d43a2c13080f60651d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numPlayers: 1
-  tileChecker: {fileID: 0}
-  playerColor: {r: 0, g: 0.734, b: 0, a: 1}
+  numPlayers: 3
+  playerColor: {r: 0, g: 0, b: 0, a: 1}
   pDirection: {x: 1, y: 0, z: 0}
   isBot: 1
+--- !u!114 &114521528653032992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012298407970}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87050e7af184cf4daa0e8334c7d8607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numPlayers: 0
+  playerColor: {r: 1, g: 0, b: 0, a: 1}
+  pDirection: {x: 0, y: 0, z: 0}
 --- !u!135 &135000011013254334
 SphereCollider:
   m_ObjectHideFlags: 1

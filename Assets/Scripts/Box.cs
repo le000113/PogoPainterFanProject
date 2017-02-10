@@ -31,6 +31,8 @@ public class Box : MonoBehaviour
 
         }
 
+        BoxSpawn.m_Counter -= 1;
+
         isBroken = true;
     }
 }
