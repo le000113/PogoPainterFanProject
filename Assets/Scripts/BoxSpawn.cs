@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoxSpawn : MonoBehaviour
 {
-    private const float BOX_SPAWN_TIMER = 10f;
+    private const float BOX_SPAWN_TIMER = 5f;
 
     private float m_Timer;
 
