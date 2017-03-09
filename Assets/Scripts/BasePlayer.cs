@@ -33,16 +33,19 @@ public class BasePlayer : MonoBehaviour
     //CHANGE here get a tile for forward
     protected Tile m_ForwardTile;
 
+    protected void Awake()
+    {
+        m_TileManager = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileManager>();
+    }
+
     protected virtual void Start()
     {
         //Obtain the size for the tile.
-        m_TileManager = GameObject.FindGameObjectWithTag("TileGenerator").GetComponent<TileManager>();
         m_Tile = m_TileManager.m_tileSize;
 
         //Go through the numbers. And check what player it is.
         pHorizontal = "P" + numPlayers + "Horizontal";
         pVertical = "P" + numPlayers + "Vertical";
-
     }
 
     protected virtual void Update()
