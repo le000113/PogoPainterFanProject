@@ -31,7 +31,6 @@ public class AI : BasePlayer
     //Rotation for the AI. Basically all the AI code goes here cuz this is the only thing that affects their movement.
     protected void RotateBot()
     {
-
         //Check to see if the player has not rotated the object yet.
         if (m_canRotate == true)
         {

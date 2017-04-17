@@ -28,7 +28,6 @@ public class Box : MonoBehaviour
 
             child.gameObject.AddComponent<BoxCollider>();
             child.gameObject.AddComponent<Rigidbody>().AddForce(force);
-
         }
 
         ItemSpawner.m_BoxCounter -= 1;

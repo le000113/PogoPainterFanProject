@@ -8,6 +8,7 @@ TagManager:
   - TileGenerator
   - Player1
   - Box
+  - Electric
   layers:
   - Default
   - TransparentFX

@@ -7,9 +7,6 @@ public class ItemSpawner : MonoBehaviour
     private const float BOX_SPAWN_TIMER = 5f;
     private const float ITEM_SPAWN_TIMER = 5f;
 
-    private float m_BoxTimer;
-    private float m_ItemTimer;
-
     public static int m_BoxCounter;
     public static int m_ItemCounter;
 
@@ -53,9 +50,6 @@ public class ItemSpawner : MonoBehaviour
                 //Adding a counter to how many boxes are in the game.
                 m_ItemCounter += 1;
 
-                //Reset the timer.
-                m_ItemTimer = 0;
-
             }
 
             //Makes sure it doesn't spawn more than 4 boxes at once.
@@ -95,8 +89,6 @@ public class ItemSpawner : MonoBehaviour
                 //Adding a counter to how many boxes are in the game.
                 m_BoxCounter += 1;
 
-                //Reset the timer.
-                m_BoxTimer = 0;
             }
 
             //Makes sure it doesn't spawn more than 4 boxes at once.
@@ -114,5 +106,13 @@ public class ItemSpawner : MonoBehaviour
             yield return null;
         }
     }
-        
+
+    public void AttachObjects(GameObject obj, GameObject Player)
+    {
+        GameObject spawnObj;
+
+        spawnObj = GameObject.Instantiate(obj);
+
+        spawnObj.transform.parent = Player.transform;
+    }       
 }
