@@ -106,13 +106,5 @@ public class ItemSpawner : MonoBehaviour
             yield return null;
         }
     }
-
-    public void AttachObjects(GameObject obj, GameObject Player)
-    {
-        GameObject spawnObj;
-
-        spawnObj = GameObject.Instantiate(obj);
-
-        spawnObj.transform.parent = Player.transform;
-    }       
+   
 }

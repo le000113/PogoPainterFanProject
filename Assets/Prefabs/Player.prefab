@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 65000011440170496}
   - component: {fileID: 23000014042894882}
   - component: {fileID: 114000012951827132}
+  - component: {fileID: 114866810839618178}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player1
@@ -178,6 +179,18 @@ MonoBehaviour:
   playerColor: {r: 1, g: 0, b: 0, a: 1}
   pDirection: {x: 1, y: 0, z: 0}
   isBot: 0
+--- !u!114 &114866810839618178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012298407970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd248c453324ea42b9bf3426fa48304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 1131742147857076, guid: fd8c9706b5499e346942a3d7ecd5cffb, type: 2}
 --- !u!135 &135000011013254334
 SphereCollider:
   m_ObjectHideFlags: 1

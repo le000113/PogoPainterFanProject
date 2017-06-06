@@ -49,7 +49,7 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    private void GenerateGrid()
+    private void GenerateGrid()  
     {
         //Create the grid.
         Grid = new Tile[positionTileX + 1, positionTileY + 1];
