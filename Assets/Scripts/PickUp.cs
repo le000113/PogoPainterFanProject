@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PickUp : ObjectHandler
 {
+    private bool m_isClaimed;
+
     [SerializeField]
     private GameObject item;
 
-    Player player;
+    private Player player;
 
     private void Start()
     {
@@ -16,17 +18,22 @@ public class PickUp : ObjectHandler
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Electric")
+        if(!m_isClaimed)
         {
-            GameObject obj;
+            if (collision.gameObject.tag == "Electric")
+            {
+                GameObject obj;
 
-            obj = Instantiate(item, item.transform);
+                obj = Instantiate(item, item.transform);
 
-            obj.transform.parent = player.transform;
+                obj.transform.parent = player.transform;
 
-            obj.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+                obj.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
 
-            DestroyObject(collision.gameObject, 0);
+                DestroyObject(collision.gameObject, 0);
+
+                m_isClaimed = true;
+            }
         }
     }
 
