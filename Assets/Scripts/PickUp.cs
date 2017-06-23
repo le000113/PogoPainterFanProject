@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PickUp : ObjectHandler
 {
-    private bool m_isClaimed;
+    public bool m_isClaimed;
+
+    //Use This for Temp.
+    public static bool m_useItem;
 
     [SerializeField]
     private GameObject item;
@@ -33,9 +36,10 @@ public class PickUp : ObjectHandler
                 DestroyObject(collision.gameObject, 0);
 
                 m_isClaimed = true;
+
+                m_useItem = true;
             }
         }
     }
-
 
 }
