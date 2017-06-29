@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 65000011690732088}
   - component: {fileID: 23000010936916194}
   - component: {fileID: 114567451407929278}
+  - component: {fileID: 54376094993632076}
   m_Layer: 8
   m_Name: Player4
-  m_TagString: Player1
+  m_TagString: Player
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012711033424}
   - component: {fileID: 33000014059679654}
-  - component: {fileID: 135000012566815414}
   - component: {fileID: 23000012779975902}
   m_Layer: 8
   m_Name: Sphere
@@ -151,6 +151,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012273225150}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54376094993632076
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011718601546}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &65000011690732088
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -178,15 +193,3 @@ MonoBehaviour:
   playerColor: {r: 1, g: 0.9724138, b: 0, a: 1}
   pDirection: {x: -1, y: 0, z: 0}
   isBot: 1
---- !u!135 &135000012566815414
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012273225150}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

@@ -11,6 +11,8 @@ public class BasePlayer : MonoBehaviour
     protected bool m_canRotate;
     protected bool m_isRunning;
 
+    protected bool m_isStunned;
+
     protected float m_Speed;
     protected float m_Angle = 90;
 
@@ -51,7 +53,7 @@ public class BasePlayer : MonoBehaviour
     protected virtual void Update()
     {
         //Movement
-        if (!m_isRunning)
+        if (!m_isRunning && !m_isStunned)
         {
             //Start the Coroutine.
             StartCoroutine(smoothMove_Cr());
@@ -77,6 +79,27 @@ public class BasePlayer : MonoBehaviour
                 transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical(pVertical), Vector3.up);
                 Direction = transform.forward;
             }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.LookAt(transform.position - Vector3.right, Vector3.up);
+                Direction = transform.forward;
+            }
+            else if(Input.GetKey(KeyCode.D))
+            {
+                transform.LookAt(transform.position + Vector3.right, Vector3.up);
+                Direction = transform.forward;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                transform.LookAt(transform.position - Vector3.forward, Vector3.up);
+                Direction = transform.forward;
+            }
+            else if (Input.GetKey(KeyCode.W))
+            {
+                transform.LookAt(transform.position + Vector3.forward, Vector3.up);
+                Direction = transform.forward;
+            }
             Vector3 playerpos = transform.position;
 
             //Using tile's y position or else player is never considered on tile.
@@ -85,8 +108,6 @@ public class BasePlayer : MonoBehaviour
             m_ForwardTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
         }
     }
-
-    
 
     private IEnumerator smoothMove_Cr()
     {
@@ -148,6 +169,17 @@ public class BasePlayer : MonoBehaviour
         }
         //If you can't move then you can rotate
         m_canRotate = true;
+    }
+
+    public void Stun()
+    {
+        m_isStunned = true;
+
+        m_Timer += Time.deltaTime;
+        if(m_Timer >= 3)
+        {
+            m_isStunned = false;
+        }
     }
 }
 

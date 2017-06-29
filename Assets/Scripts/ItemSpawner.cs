@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     private const float BOX_SPAWN_TIMER = 5f;
-    private const float ITEM_SPAWN_TIMER = 5f;
+    private const float ITEM_SPAWN_TIMER = 10f;
 
     public static int m_BoxCounter;
     public static int m_ItemCounter;
@@ -25,27 +25,28 @@ public class ItemSpawner : MonoBehaviour
     {
         tile = GetComponent<TileManager>();
 
-       StartCoroutine(boxSpawner_cr());
-       StartCoroutine(ItemSpawner_cr());
+        StartCoroutine(boxSpawner_cr());
+        StartCoroutine(ItemSpawner_cr());
     }
 
     private IEnumerator ItemSpawner_cr()
     {
-        while(true)
+        while (true)
         {
             if (!m_ItemLimitReached)
             {
                 yield return new WaitForSeconds(ITEM_SPAWN_TIMER);
 
-                //Get the values between 0 and 8
-                int x = Random.Range(0, 8);
-                int y = Random.Range(0, 8);
+                bool canSpawn = false;
 
-                //Spawn the box.
-                GameObject powerUp = (GameObject)Instantiate(powerUpObject[Random.Range(0, powerUpObject.Length)]);
+                string itemSpawn = "Lightning";
 
-                //Setting it's position.
-                powerUp.transform.position = tile.GetGridTilePosition(x, y);
+                //Checking if able to spawn, if successful then item will spawn and exit while loop
+                while (canSpawn == false)
+                {
+                    canSpawn = SpawnChecker(itemSpawn);
+                  
+                }
 
                 //Adding a counter to how many boxes are in the game.
                 m_ItemCounter += 1;
@@ -71,20 +72,20 @@ public class ItemSpawner : MonoBehaviour
 
     private IEnumerator boxSpawner_cr()
     {
-        while(true)
+        while (true)
         {
             if (!m_BoxLimitReached)
             {
                 yield return new WaitForSeconds(BOX_SPAWN_TIMER);
-                //Get the values between 0 and 8
-                int x = Random.Range(0, 8);
-                int y = Random.Range(0, 8);
 
-                //Spawn the box.
-                GameObject Box = (GameObject)Instantiate(boxObject);
+                bool canSpawn = false;
+                string box = "Box";
 
-                //Setting it's position.
-                Box.transform.position = tile.GetGridTilePosition(x, y);
+                //Checking if able to spawn, if successful then item will spawn and exit while loop
+                while(canSpawn == false)
+                {
+                    canSpawn = SpawnChecker(box);
+                }
 
                 //Adding a counter to how many boxes are in the game.
                 m_BoxCounter += 1;
@@ -106,5 +107,37 @@ public class ItemSpawner : MonoBehaviour
             yield return null;
         }
     }
-   
+
+    bool SpawnChecker(string aPowerup)
+    {
+        //Get the values between 0 and 8
+        int x = Random.Range(0, 8);
+        int y = Random.Range(0, 8);
+
+        Vector3 tilePos = tile.GetGridTilePosition(x, y);
+
+        tilePos.y = 0;//Reset cuz function below doesn't check actual tile y pos
+
+        if (tile.GetGridTile(tilePos).powerUp != "")
+        {
+            return false;
+        }
+
+        tile.GetGridTile(tilePos).powerUp = aPowerup;
+
+        //Setting it's position.
+        tilePos.y = 0.2f; //Gotta fix the y cuz we are gonna spawn it now
+        //Spawn the box.
+        if (aPowerup == "Box")
+        {
+            GameObject Box = (GameObject)Instantiate(boxObject);
+            Box.transform.position = tile.GetGridTilePosition(x, y);
+        }
+        else if (aPowerup == "Lightning")
+        {
+            GameObject powerUp = (GameObject)Instantiate(powerUpObject[Random.Range(0, powerUpObject.Length)]);
+            powerUp.transform.position = tile.GetGridTilePosition(x, y);
+        }
+        return true;
+    }
 }

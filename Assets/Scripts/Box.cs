@@ -10,6 +10,10 @@ public class Box : ObjectHandler
 
     private void OnTriggerEnter(Collider collider)
     {
+        Debug.Log(collider.name);
+
+        CollectPoints(collider);
+
         GetComponent<BoxCollider>().enabled = false;
 
         //Make children explode.....
@@ -27,6 +31,40 @@ public class Box : ObjectHandler
         isBroken = true;
 
         DeleteObject(this.gameObject, isBroken, m_Timer);
+    }
+
+    void CollectPoints(Collider aCollider)
+    {
+        Player player = aCollider.GetComponent<Player>();
+
+        Color color = player.playerColor;
+
+        Tile tile = null;
+
+        for (int i = 0; i < 8; ++i)
+        {
+            for (int j = 0; j < 8; ++j)
+            {
+                Vector3 tilePos = player.GetTileManager().GetGridTilePosition(i, j);
+
+                tilePos.y = 0;//Reset cuz function below doesn't check actual tile y pos
+
+                tile = player.GetTileManager().GetGridTile(tilePos);
+
+                if (tile.color == color)
+                {
+                    player.GetTileManager().ChangeColors(Color.white, tile);
+                    player.AddScore(1);
+                }
+            }
+        }
+        if (tile != null)
+        {
+            tile.powerUp = "";
+        }
+
+        //Change score UI here
+        //Debug.Log(player.m_Score);
     }
 }
 

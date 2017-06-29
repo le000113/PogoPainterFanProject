@@ -27,4 +27,14 @@ public class Player : BasePlayer
 
         RotatePlayer();
     }
+
+    public TileManager GetTileManager()
+    {
+        return m_TileManager;
+    }
+
+    public void AddScore(int aScore)
+    {
+        m_Score += aScore;
+    }
 }

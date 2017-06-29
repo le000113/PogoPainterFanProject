@@ -15,6 +15,7 @@ public class Tile
         m_IsOccupied = aOcupied;
         tile = aTile;
         coordinates = aCoords;
+        powerUp = "";
     }
 
     public Vector3 position { private set; get; }

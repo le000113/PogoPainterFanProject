@@ -11,6 +11,7 @@ public class PickUp : ObjectHandler
 
     [SerializeField]
     private GameObject item;
+    public GameObject usableItem { get; set; }
 
     private Player player;
 
@@ -25,13 +26,13 @@ public class PickUp : ObjectHandler
         {
             if (collision.gameObject.tag == "Electric")
             {
-                GameObject obj;
+                usableItem = null;
 
-                obj = Instantiate(item, item.transform);
+                usableItem = Instantiate(item, item.transform);
 
-                obj.transform.parent = player.transform;
+                usableItem.transform.parent = player.transform;
 
-                obj.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+                usableItem.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
 
                 DestroyObject(collision.gameObject, 0);
 
