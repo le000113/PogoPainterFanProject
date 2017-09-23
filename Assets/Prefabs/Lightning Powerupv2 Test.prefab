@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a9548b789e1a94499667e23e79b703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: 1
 --- !u!114 &114816276242303668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,4 +231,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5e93d233860d24f9fd4e17b5aee53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1000012298407970, guid: f56e7b6a721012043a8293375327cd8b, type: 2}
+  Player: {fileID: 0}
+  particle: {fileID: 0}

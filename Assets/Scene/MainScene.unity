@@ -751,7 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpObject:
   - {fileID: 1945989959792346, guid: fd8c9706b5499e346942a3d7ecd5cffb, type: 2}
-  - {fileID: 1945989959792346, guid: fd8c9706b5499e346942a3d7ecd5cffb, type: 2}
+  - {fileID: 1794996095449478, guid: 7454e4e9d1dc64849ad94b1f42d55abd, type: 2}
   boxObject: {fileID: 1185170608543094, guid: d020da78de1201c4d82eedbd71d575be, type: 2}
 --- !u!1 &2027165345
 GameObject:
