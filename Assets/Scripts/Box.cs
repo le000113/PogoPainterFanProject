@@ -10,8 +10,7 @@ public class Box : ObjectHandler
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log(collider.name);
-
+        GetComponent<AudioSource>().Play();
         CollectPoints(collider);
 
         GetComponent<BoxCollider>().enabled = false;
