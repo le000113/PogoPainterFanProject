@@ -21,11 +21,11 @@ public class Player : BasePlayer
 
     protected override void Update()
     {
+        RotatePlayer();
+        KeyboardControls();
         base.Update();
         //Changes the tile colour;
         m_TileManager.ChangeColors(color, m_CurrentTile);
-
-        RotatePlayer();
     }
 
     public TileManager GetTileManager()

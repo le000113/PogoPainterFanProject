@@ -5,7 +5,7 @@ Direct3D:
     Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
     Vendor:   NVIDIA
     VRAM:     3072 MB
-    Driver:   22.21.13.8253
+    Driver:   22.21.13.8541
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\Ethan\Documents\GitHub\PogoPainterFanProject\test_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\Ethan\Documents\GitHub\PogoPainterFanProject\test_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -17,14 +17,21 @@ Platform assembly: C:\Users\Ethan\Documents\GitHub\PogoPainterFanProject\test_Da
 Loading C:\Users\Ethan\Documents\GitHub\PogoPainterFanProject\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Ethan\Documents\GitHub\PogoPainterFanProject\test_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
 Loading C:\Users\Ethan\Documents\GitHub\PogoPainterFanProject\test_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.033 seconds
+- Completed reload, in  0.037 seconds
 Platform assembly: C:\Users\Ethan\Documents\GitHub\PogoPainterFanProject\test_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Ethan\Documents\GitHub\PogoPainterFanProject\test_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 3.562964 ms
+UnloadTime: 3.459004 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 2810 -> priority: 1 
-  Thread -> id: 28ac -> priority: 1 
+  Thread -> id: 3684 -> priority: 1 
+  Thread -> id: 1a00 -> priority: 1 
+NullReferenceException: Object reference not set to an instance of an object
+  at TileManager.GetNextTile (Vector3 aDirection, .Tile aCurrentTile) [0x00000] in <filename unknown>:0 
+  at BasePlayer+<smoothMove_Cr>c__Iterator0.MoveNext () [0x00000] in <filename unknown>:0 
+  at UnityEngine.SetupCoroutine.InvokeMoveNext (IEnumerator enumerator, IntPtr returnValueAddress) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+

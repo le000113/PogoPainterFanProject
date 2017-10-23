@@ -28,14 +28,4 @@ public class ElectricPowerUp : MonoBehaviour
             }
         }
     }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            Debug.Log("Stun");
-            other.GetComponent<Player>().Stun();
-        }
-    }
-
 }

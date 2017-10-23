@@ -55,8 +55,11 @@ public class BasePlayer : MonoBehaviour
         //Movement
         if (!m_isRunning && !m_isStunned)
         {
-            //Start the Coroutine.
-            StartCoroutine(smoothMove_Cr());
+            if (InputManager.sInstance.InputControllerHorizontal(pHorizontal).magnitude > 0.5f)
+                //Start the Coroutine.
+                StartCoroutine(smoothMove_Cr());
+            else if (InputManager.sInstance.InputControllerVertical(pVertical).magnitude > 0.5f)
+                StartCoroutine(smoothMove_Cr());
         }
     }
 
@@ -79,13 +82,25 @@ public class BasePlayer : MonoBehaviour
                 transform.LookAt(transform.position + InputManager.sInstance.InputControllerVertical(pVertical), Vector3.up);
                 Direction = transform.forward;
             }
+            Vector3 playerpos = transform.position;
 
+            //Using tile's y position or else player is never considered on tile.
+            playerpos.y = 0;
+
+            m_ForwardTile = m_TileManager.GetNextTile(Direction, m_CurrentTile);
+        }
+    }
+
+    protected void KeyboardControls()
+    {
+        if (m_canRotate == true)
+        {
             if (Input.GetKey(KeyCode.A))
             {
                 transform.LookAt(transform.position - Vector3.right, Vector3.up);
                 Direction = transform.forward;
             }
-            else if(Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.D))
             {
                 transform.LookAt(transform.position + Vector3.right, Vector3.up);
                 Direction = transform.forward;
@@ -142,6 +157,7 @@ public class BasePlayer : MonoBehaviour
 
                     yield return null;
                 }
+
                 //Make the objects position to wherever the end will be.
                 transform.position = endPosition;
 
@@ -171,15 +187,5 @@ public class BasePlayer : MonoBehaviour
         m_canRotate = true;
     }
 
-    public void Stun()
-    {
-        m_isStunned = true;
-
-        m_Timer += Time.deltaTime;
-        if(m_Timer >= 3)
-        {
-            m_isStunned = false;
-        }
-    }
 }
 

@@ -14,9 +14,7 @@ public class InputManager : MonoBehaviour
             sInstance = this;
         }
         else
-        {
             Debug.Log("You have more than 1 manager");
-        }
 
         DontDestroyOnLoad(gameObject);
     }
