@@ -9,6 +9,7 @@ TagManager:
   - Player1
   - Box
   - Electric
+  - Missile
   layers:
   - Default
   - TransparentFX

@@ -144,6 +144,10 @@ public class ItemSpawner : MonoBehaviour
                 GameObject powerUp2 = (GameObject)Instantiate(powerUpObject[Random.Range(0, powerUpObject.Length)]);
                 powerUp2.transform.position = tile.GetGridTilePosition(x, y);
                 break;
+            case 3:
+                GameObject powerUp3 = (GameObject)Instantiate(powerUpObject[Random.Range(0, powerUpObject.Length)]);
+                powerUp3.transform.position = tile.GetGridTilePosition(x, y);
+                break;
         }
 
         return true;

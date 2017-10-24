@@ -195,6 +195,10 @@ MonoBehaviour:
   playerColor: {r: 1, g: 0, b: 0, a: 1}
   pDirection: {x: 1, y: 0, z: 0}
   isBot: 0
+  usePowerUp:
+  - {fileID: 1454887072865732, guid: de306c3049cfcb44d8ad63b286781d6d, type: 2}
+  - {fileID: 1402782246492928, guid: 892b116d350a49348a3504f837ca9861, type: 2}
+  - {fileID: 1402782246492928, guid: 892b116d350a49348a3504f837ca9861, type: 2}
 --- !u!114 &114404909252366596
 MonoBehaviour:
   m_ObjectHideFlags: 1

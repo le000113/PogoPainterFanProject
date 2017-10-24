@@ -14,7 +14,7 @@ public class Missile : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        direction = player.transform.forward;
+        direction = transform.forward;
         velocity = direction * MISSILE_SPEED;
     }
 

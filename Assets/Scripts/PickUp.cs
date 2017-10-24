@@ -34,6 +34,26 @@ public class PickUp : ObjectHandler
 
                 usableItem.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
 
+                player.powerUp = "Electric";
+
+                DestroyObject(collision.gameObject, 0);
+
+                m_isClaimed = true;
+
+                m_useItem = true;
+            }
+            else if (collision.gameObject.tag == "Missile")
+            {
+                usableItem = null;
+                //TODO change this to show missile when picked up
+                usableItem = Instantiate(item, item.transform);
+
+                usableItem.transform.parent = player.transform;
+
+                usableItem.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+
+                player.powerUp = "Missile";
+
                 DestroyObject(collision.gameObject, 0);
 
                 m_isClaimed = true;

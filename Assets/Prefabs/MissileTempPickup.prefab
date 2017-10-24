@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 136177829532157230}
   - component: {fileID: 23462357271438484}
   m_Layer: 0
-  m_Name: MissileTemp
-  m_TagString: Missile
+  m_Name: MissileTempPickup
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

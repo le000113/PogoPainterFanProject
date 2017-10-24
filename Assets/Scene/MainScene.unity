@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -750,8 +750,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpObject:
-  - {fileID: 1945989959792346, guid: fd8c9706b5499e346942a3d7ecd5cffb, type: 2}
-  - {fileID: 1794996095449478, guid: 7454e4e9d1dc64849ad94b1f42d55abd, type: 2}
+  - {fileID: 100002, guid: 70b12620b7ed8484ab747ee8f0cf3cc0, type: 3}
+  - {fileID: 100000, guid: 3eb456c54d8aea44fa13b800a331d790, type: 3}
+  - {fileID: 1402782246492928, guid: 892b116d350a49348a3504f837ca9861, type: 2}
   boxObject: {fileID: 1185170608543094, guid: d020da78de1201c4d82eedbd71d575be, type: 2}
 --- !u!1 &2027165345
 GameObject:

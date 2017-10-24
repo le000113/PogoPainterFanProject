@@ -14,7 +14,7 @@ public class ElectricPowerUp : MonoBehaviour
 
     private void Update()
     {
-        if (PickUp.m_useItem == true)
+        /*if (PickUp.m_useItem == true)not needed
         {
             if (Input.GetButton("AButtonFire") || Input.GetKeyDown(KeyCode.Space))
             {
@@ -26,6 +26,6 @@ public class ElectricPowerUp : MonoBehaviour
                    
                 PickUp.m_useItem = false;
             }
-        }
+        }*/
     }
 }
