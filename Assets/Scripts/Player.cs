@@ -22,6 +22,10 @@ public class Player : BasePlayer
 
         //CHANGE set up forward tile
         m_ForwardTile = m_TileManager.GetGridTile(new Vector3(transform.position.x, 0, transform.position.z) + (transform.forward * 2.5f));
+
+
+
+ 
     }
 
     protected override void Update()
@@ -49,8 +53,9 @@ public class Player : BasePlayer
     {
         if (PickUp.m_useItem == true)
         {
-            if (Input.GetButton("AButtonFire") || Input.GetKeyDown(KeyCode.Space))
+            if (InputManager.sInstance.InputFireControl(pBButtonFire) || Input.GetKeyDown(KeyCode.Space))
             {
+                Debug.Log(pBButtonFire);
                 GameObject particle = null;
                 if (powerUp == "Electric")
                 {

@@ -54,7 +54,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4428617047688306}
-  - component: {fileID: 114324158001108874}
   - component: {fileID: 65266227047249278}
   m_Layer: 0
   m_Name: Lightning Powerup v3
@@ -192,19 +191,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6630764, y: 2.9166255, z: 1.7075723}
   m_Center: {x: 0.015370193, y: 1.2333884, z: 0.022988718}
---- !u!114 &114324158001108874
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1945989959792346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d5e93d233860d24f9fd4e17b5aee53c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  particle: {fileID: 0}
 --- !u!114 &114948594414263282
 MonoBehaviour:
   m_ObjectHideFlags: 1

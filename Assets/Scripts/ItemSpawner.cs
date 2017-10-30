@@ -39,7 +39,7 @@ public class ItemSpawner : MonoBehaviour
 
                 bool canSpawn = false;
 
-                int itemSpawn = Random.Range(1, 3);
+                int itemSpawn = Random.Range(1, 4);
 
                 //Checking if able to spawn, if successful then item will spawn and exit while loop
                 while (canSpawn == false)

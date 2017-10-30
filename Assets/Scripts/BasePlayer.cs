@@ -18,6 +18,7 @@ public class BasePlayer : MonoBehaviour
 
     protected string pHorizontal;
     protected string pVertical;
+    protected string pBButtonFire;
 
     public int numPlayers;
 
@@ -48,6 +49,7 @@ public class BasePlayer : MonoBehaviour
         //Go through the numbers. And check what player it is.
         pHorizontal = "P" + numPlayers + "Horizontal";
         pVertical = "P" + numPlayers + "Vertical";
+        pBButtonFire = "P" + numPlayers + "BButtonFire";
     }
 
     protected virtual void Update()

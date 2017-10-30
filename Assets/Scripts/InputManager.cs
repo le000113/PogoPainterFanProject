@@ -29,4 +29,9 @@ public class InputManager : MonoBehaviour
         return new Vector3(0, 0, Input.GetAxisRaw(pVertical));
     }
 
+    public bool InputFireControl(string pVertical)
+    {
+        return Input.GetButton(pVertical);
+    }
+
 }
