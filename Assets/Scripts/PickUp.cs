@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : ObjectHandler
+public class PickUp : ObjectHandler, WalkOver
 {
-    public bool m_isClaimed;
-
     //Use This for Temp.
     public static bool m_useItem;
 
@@ -20,47 +18,68 @@ public class PickUp : ObjectHandler
         player = GetComponent<Player>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void ApplyEffect(GameObject player)
     {
-        if(!m_isClaimed)
+        if (!BasePlayer.m_isClaimed)
         {
-            if (collision.gameObject.tag == "Electric")
-            {
-                usableItem = null;
+            usableItem = null;
 
-                usableItem = Instantiate(item, item.transform);
+            usableItem = (GameObject)Instantiate(item, item.transform);
 
-                usableItem.transform.parent = player.transform;
+            usableItem.transform.parent = player.transform;
 
-                usableItem.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+            usableItem.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
 
-                player.powerUp = "Electric";
+            DestroyObject(this.gameObject, 0);
 
-                DestroyObject(collision.gameObject, 0);
+            BasePlayer.m_isClaimed = true;
 
-                m_isClaimed = true;
-
-                m_useItem = true;
-            }
-            else if (collision.gameObject.tag == "Missile")
-            {
-                usableItem = null;
-                //TODO change this to show missile when picked up
-                usableItem = Instantiate(item, item.transform);
-
-                usableItem.transform.parent = player.transform;
-
-                usableItem.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
-
-                player.powerUp = "Missile";
-
-                DestroyObject(collision.gameObject, 0);
-
-                m_isClaimed = true;
-
-                m_useItem = true;
-            }
+            m_useItem = true;
         }
+
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(!m_isClaimed)
+    //    {
+    //        if (collision.gameObject.tag == "Electric")
+    //        {
+    //            usableItem = null;
+
+    //            usableItem = Instantiate(item, item.transform);
+
+    //            usableItem.transform.parent = player.transform;
+
+    //            usableItem.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+
+    //            player.powerUp = "Electric";
+
+    //            DestroyObject(collision.gameObject, 0);
+
+    //            m_isClaimed = true;
+
+    //            m_useItem = true;
+    //        }
+    //        else if (collision.gameObject.tag == "Missile")
+    //        {
+    //            usableItem = null;
+    //            //TODO change this to show missile when picked up
+    //            usableItem = Instantiate(item, item.transform);
+
+    //            usableItem.transform.parent = player.transform;
+
+    //            usableItem.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+
+    //            player.powerUp = "Missile";
+
+    //            DestroyObject(collision.gameObject, 0);
+
+    //            m_isClaimed = true;
+
+    //            m_useItem = true;
+    //        }
+    //    }
+    //}
 
 }

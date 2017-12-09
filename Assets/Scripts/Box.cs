@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : ObjectHandler
+public class Box : ObjectHandler, WalkOver
 {
     private const float FORCE_ON_BOX = 1;
     private bool isBroken;
     private float m_Timer = 4;
 
-    private void OnTriggerEnter(Collider collider)
+    public void ApplyEffect(GameObject player)
     {
         GetComponent<AudioSource>().Play();
-        CollectPoints(collider);
 
-        GetComponent<BoxCollider>().enabled = false;
+        CollectPoints(player.GetComponent<Collider>());
 
         //Make children explode.....
         foreach (Transform child in transform)
@@ -30,6 +29,7 @@ public class Box : ObjectHandler
         isBroken = true;
 
         DeleteObject(this.gameObject, isBroken, m_Timer);
+        DeleteObject(this.gameObject.transform.parent.gameObject, isBroken, m_Timer);
     }
 
     void CollectPoints(Collider aCollider)
@@ -61,9 +61,6 @@ public class Box : ObjectHandler
         {
             tile.powerUp = "";
         }
-
-        //Change score UI here
-        //Debug.Log(player.m_Score);
     }
 }
 

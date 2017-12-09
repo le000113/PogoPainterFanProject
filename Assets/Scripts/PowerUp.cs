@@ -56,8 +56,6 @@ public class PowerUp : MonoBehaviour
 
             spawnObject.transform.position = tile.GetGridTilePosition(m_xPosition, m_yPosition);
 
-            tile.SetPowerUp(m_xPosition, m_yPosition, aPowerUpType);
-
             m_Counter += 1;
         }
     }

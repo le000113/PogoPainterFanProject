@@ -7,9 +7,6 @@ public class TileManager : MonoBehaviour
     [SerializeField]
     GameObject TileFloor;
 
-    [SerializeField]
-    GameObject ScoreBox;
-
     Tile[,] Grid;
 
     Vector3[,] Gridposition;
@@ -69,6 +66,7 @@ public class TileManager : MonoBehaviour
 
                 //Set the grid and then generate it.
                 Grid[i, j] = new Tile(gridPlane.transform.position, Color.white, false, gridPlane, coords);
+                Grid[i, j].type = 0;
             }
         }
     }
@@ -98,9 +96,9 @@ public class TileManager : MonoBehaviour
         return null;
     }
 
-    public void SetPowerUp(int x, int y, string aPowerup)
+    public Tile GetGridTile(int x, int y)
     {
-        Grid[x, y].powerUp = aPowerup;
+        return Grid[x, y];
     }
 
     //Gets the tile infront of the player depending on their direction

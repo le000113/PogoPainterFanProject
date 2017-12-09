@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Tile
 {
+    public int type;
+
+    public GameObject occupant;
+
     public Tile()
     {
 
@@ -16,6 +20,12 @@ public class Tile
         tile = aTile;
         coordinates = aCoords;
         powerUp = "";
+    }
+
+    public void SpawnPowerUp(GameObject obj)
+    {
+        occupant = obj;
+        type = 1;
     }
 
     public Vector3 position { private set; get; }

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class BasePlayer : MonoBehaviour
 {
+    public static bool m_isClaimed;
+
     private float m_Timer = 0f;
     private float m_Tile;
 
@@ -50,6 +52,8 @@ public class BasePlayer : MonoBehaviour
         pHorizontal = "P" + numPlayers + "Horizontal";
         pVertical = "P" + numPlayers + "Vertical";
         pBButtonFire = "P" + numPlayers + "BButtonFire";
+
+        m_isClaimed = false;
     }
 
     protected virtual void Update()
@@ -57,8 +61,8 @@ public class BasePlayer : MonoBehaviour
         //Movement
         if (!m_isRunning && !m_isStunned)
         {
+            //Start the Coroutine.
             if (InputManager.sInstance.InputControllerHorizontal(pHorizontal).magnitude > 0.5f)
-                //Start the Coroutine.
                 StartCoroutine(smoothMove_Cr());
             else if (InputManager.sInstance.InputControllerVertical(pVertical).magnitude > 0.5f)
                 StartCoroutine(smoothMove_Cr());
@@ -140,10 +144,15 @@ public class BasePlayer : MonoBehaviour
         if (!(endPosition.x < -1f || endPosition.x > 18 || endPosition.z < -1 || endPosition.z > 18))
         {
             //CHANGE Here cheacking for forward tile is occupied
-            if (!m_ForwardTile.m_IsOccupied)
+            if (m_ForwardTile.occupant == null || m_ForwardTile.type != 0 && m_ForwardTile.occupant != null)
             {
-                m_CurrentTile.m_IsOccupied = false;
-                m_ForwardTile.m_IsOccupied = true;
+                if(m_ForwardTile.occupant != null)
+                    m_ForwardTile.occupant.transform.GetChild(0).GetComponent<WalkOver>().ApplyEffect(this.gameObject);
+
+                m_CurrentTile.occupant = null;
+                m_ForwardTile.occupant = this.gameObject;
+                m_ForwardTile.type = 0;
+
                 //So you can't rotate while moving
                 m_canRotate = false;
 
@@ -152,7 +161,7 @@ public class BasePlayer : MonoBehaviour
 
                 while (t < 1f)
                 {
-                    t += Time.deltaTime;
+                    t += Time.deltaTime * m_Speed;
 
                     //Lerping it's position from the start to the end.
                     transform.position = Vector3.Lerp(startPosition, endPosition, t);
@@ -189,5 +198,9 @@ public class BasePlayer : MonoBehaviour
         m_canRotate = true;
     }
 
+    public void ApplySpeed()
+    {
+        m_Speed *= 1.5f;
+    }
 }
 

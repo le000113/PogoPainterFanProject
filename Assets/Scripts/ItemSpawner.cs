@@ -45,7 +45,6 @@ public class ItemSpawner : MonoBehaviour
                 while (canSpawn == false)
                 {
                     canSpawn = SpawnChecker(null, itemSpawn);
-
                 }
 
                 //Adding a counter to how many boxes are in the game.
@@ -116,7 +115,7 @@ public class ItemSpawner : MonoBehaviour
 
         Vector3 tilePos = tile.GetGridTilePosition(x, y);
 
-        tilePos.y = 0;//Reset cuz function below doesn't check actual tile y pos
+        tilePos.y = 0;//Reset cause function below doesn't check actual tile y pos
 
         if (tile.GetGridTile(tilePos).powerUp != "")
         {
@@ -129,24 +128,29 @@ public class ItemSpawner : MonoBehaviour
         tilePos.y = 0.2f; //Gotta fix the y cuz we are gonna spawn it now
         //Spawn the box.
         if (aPowerup == "Box")
-        {
+        {        
             GameObject Box = (GameObject)Instantiate(boxObject);
             Box.transform.position = tile.GetGridTilePosition(x, y);
+            tile.GetGridTile(x,y).SpawnPowerUp(Box);     
         }
 
+        //Go through the index to see which item should be spawned.
         switch (index)
         {
             case 1:
-                GameObject powerUp = (GameObject)Instantiate(powerUpObject[Random.Range(0, powerUpObject.Length)]);
+                GameObject powerUp = (GameObject)Instantiate(powerUpObject[0]);
                 powerUp.transform.position = tile.GetGridTilePosition(x, y);
+                tile.GetGridTile(x, y).SpawnPowerUp(powerUp);
                 break;
             case 2:
-                GameObject powerUp2 = (GameObject)Instantiate(powerUpObject[Random.Range(0, powerUpObject.Length)]);
+                GameObject powerUp2 = (GameObject)Instantiate(powerUpObject[1]);
                 powerUp2.transform.position = tile.GetGridTilePosition(x, y);
+                tile.GetGridTile(x, y).SpawnPowerUp(powerUp2);
                 break;
             case 3:
-                GameObject powerUp3 = (GameObject)Instantiate(powerUpObject[Random.Range(0, powerUpObject.Length)]);
+                GameObject powerUp3 = (GameObject)Instantiate(powerUpObject[2]);
                 powerUp3.transform.position = tile.GetGridTilePosition(x, y);
+                tile.GetGridTile(x, y).SpawnPowerUp(powerUp3);
                 break;
         }
 

@@ -23,9 +23,8 @@ public class Player : BasePlayer
         //CHANGE set up forward tile
         m_ForwardTile = m_TileManager.GetGridTile(new Vector3(transform.position.x, 0, transform.position.z) + (transform.forward * 2.5f));
 
-
-
- 
+        m_CurrentTile.occupant = this.gameObject;
+        m_CurrentTile.type = 0;
     }
 
     protected override void Update()

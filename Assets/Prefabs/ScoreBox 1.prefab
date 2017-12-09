@@ -477,7 +477,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4696037995634936}
   - component: {fileID: 114531704180274222}
-  - component: {fileID: 65158111895411316}
   - component: {fileID: 54973927433481410}
   - component: {fileID: 82541920184465658}
   m_Layer: 9
@@ -2985,18 +2984,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65158111895411316
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1613431464823972}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2449799, y: 1.1049781, z: 1.3808179}
-  m_Center: {x: -0.03689003, y: 0.52700424, z: -0.6110258}
 --- !u!82 &82541920184465658
 AudioSource:
   m_ObjectHideFlags: 1

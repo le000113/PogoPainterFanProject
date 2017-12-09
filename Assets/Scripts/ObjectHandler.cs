@@ -12,18 +12,4 @@ public class ObjectHandler : MonoBehaviour
         }
     }
 
-
-    public bool TileCollision(GameObject powerUp)
-    {
-        Tile[,] CheckLength;
-        for(int i = 0; i < 8; ++i)
-        {
-            for(int j = 0; j < 8; ++j)
-            {
-
-            }
-        }
-
-        return true;
-    }
 }
